@@ -1,10 +1,17 @@
 ## Various resources (not sorted)
 
 [This is how you install C/C++ on VS Code PROPERLY for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp)
+
 [Data Breaches ebook (31 pgs) - interesting article](https://content.upguard.com/hubfs/resources/eBook%20-%20A%20Complete%20Guide%20to%20Data%20Breaches.pdf)
+
 [Insecurity Magazine - A news site for cyber attacks and threat intelligence](https://www.infosecurity-magazine.com/news/)
+
 [History of the Internet - just an interesting read](https://en.wikipedia.org/wiki/History_of_the_Internet)
+
 [OPTE - an internet endpoint map that shows an visual representation of the internet, super cool](https://www.opte.org/the-internet)
+
 [What is the end to end principle? - internet architecture yt video](https://youtu.be/3Iy4EQpGnpo?si=2JheoTQyS5_EkCf0)
+
 [History of OSI (and TCP/IP) - interesting read about how the internet was formed](https://gacaffe.net/en/2019/06/06/history-of-osi/)
+
 [What is ARP used for? (reddit, see user IWillNotBeBroken) - it's from reddit but it makes a lot of sense](https://www.reddit.com/r/networking/comments/322ywz/what_is_arp_used_for/)
