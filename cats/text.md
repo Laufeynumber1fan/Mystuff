@@ -7,11 +7,3 @@
 [OPTE - an internet endpoint map that shows an visual representation of the internet, super cool](https://www.opte.org/the-internet)
 [What is the end to end principle? - internet architecture yt video](https://youtu.be/3Iy4EQpGnpo?si=2JheoTQyS5_EkCf0)
 [History of OSI (and TCP/IP) - interesting read about how the internet was formed](https://gacaffe.net/en/2019/06/06/history-of-osi/)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f1741505bfef6686f281b03069e8202aa735f92e
-[What is ARP used for? (reddit, see user IWillNotBeBroken) - it's from reddit but it makes a lot of sense](https://www.reddit.com/r/networking/comments/322ywz/what_is_arp_used_for/)
-=======
-[What is ARP used for? (reddit, see user IWillNotBeBroken) - it's from reddit but it makes a lot of sense](https://www.reddit.com/r/networking/comments/322ywz/what_is_arp_used_for/)
->>>>>>> parent of d1892c8 (ok this time)
