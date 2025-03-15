@@ -8,3 +8,8 @@
 [What is the end to end principle? - internet architecture yt video](https://youtu.be/3Iy4EQpGnpo?si=2JheoTQyS5_EkCf0)
 [History of OSI (and TCP/IP) - interesting read about how the internet was formed](https://gacaffe.net/en/2019/06/06/history-of-osi/)  
 [Reverse shell command templates](https://www.revshells.com)  
+[Advent of Code - coding challenges](https://adventofcode.com)  
+[libgen.is - FREE textbooks and PDFs](https://www.libgen.is)  
+[netresec - PCAPS](https://www.netresec.com/?page=PcapFiles)
+[MAWILab - anomalous PCAPS](https://www.netresec.com/?page=PcapFiles)
+[Router Passwords - lookup default router passwords](https://www.routerpasswords.com)
