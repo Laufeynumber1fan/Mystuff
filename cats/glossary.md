@@ -6,3 +6,4 @@ Soft Slicing      cutting bytes and adjusting only capture size to the new (shor
 Adaptive Slicing  cutting on offsets depending on header sizes, e.g "after the TCP header" or "after the IPv6 header"
 Static Slicing    cutting at a specific offset, regardless of frame headers
 External Slicing  cutting is performed on a device not doing the capture. This often results in hard sliced captures.
+z
