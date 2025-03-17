@@ -4,3 +4,4 @@ Apparently upon an initial boot of a new Arch machine, you actually have to init
 
 Below are some of the things I learned when I was learning how to install Arch:
 
+![alt text](https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/screenshot-archlinux.png)
