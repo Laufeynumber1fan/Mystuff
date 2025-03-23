@@ -17,3 +17,5 @@
 [Primary partition explained](https://eng.libretexts.org/Bookshelves/Computer_Science/Operating_Systems/Linux_-_The_Penguin_Marches_On_(McClanahan)/04%3A_Managing_Linux_Storage/4.06%3A_Partitions_and_Labels)
 [Extended and Logical partitions explained](https://eng.libretexts.org/Bookshelves/Computer_Science/Operating_Systems/Linux_-_The_Penguin_Marches_On_(McClanahan)/04%3A_Managing_Linux_Storage/4.06%3A_Partitions_and_Labels/4.06.01%3A_Partitions_and_Labels_continued#:~:text=An%20Extended%20partition%20is%20a,created%20within%20an%20Extended%20partition.)
 [Swap space in Linux](https://opensource.com/article/18/9/swap-space-linux-systems)  
+[x86 Assembly in 10 mins](https://www.youtube.com/watch?v=75gBFiFtAb8)
+[An intro to x86-64 reverse engineering](https://nora.codes/tutorial/an-intro-to-x86_64-reverse-engineering/)
