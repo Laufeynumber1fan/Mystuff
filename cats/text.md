@@ -19,3 +19,7 @@
 [Swap space in Linux](https://opensource.com/article/18/9/swap-space-linux-systems)  
 [x86 Assembly in 10 mins](https://www.youtube.com/watch?v=75gBFiFtAb8)
 [An intro to x86-64 reverse engineering](https://nora.codes/tutorial/an-intro-to-x86_64-reverse-engineering/)
+[Assembly Instruction Reference](https://www.felixcloutier.com/x86/)
+[Intro to Hexadecimals](https://learn.sparkfun.com/tutorials/hexadecimal/all)
+[Video about breaking rsa](https://www.youtube.com/watch?v=-ShwJqAalOk)
+[Regex 101](https://regexlearn.com/learn/regex101)

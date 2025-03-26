@@ -2,12 +2,11 @@ I was interested in making an Arch Linux VM because of this [tierlist](https://w
 
 ![alt text](https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/screenshot-archlinux.png)
 
-Apparently upon an initial boot of a new Arch machine, you actually have to initialize and install Arch from scratch via command line, this is usually done for most other distributions automatically with some sort of installation menu upon first boot and this is something that I have taken for granted most of my life with my newfound inexperience in trying to install an OS like Arch.
+Apparently upon an initial boot of a new Arch machine, you actually have to initialize and install Arch from scratch via command line. This is usually done for most other distributions automatically with some sort of installation menu upon first boot. But not Arch!
 
-Below are some of the things I learned when I was learning how to install Arch:
+After writing this guide and installing arch properly I still can't believe I have taken for granted those installation menus.
 
-I followed through the [installation guide for Arch](https://wiki.archlinux.org/title/Installation_guide) and it was simple enough to follow but I quickly ran through a roadblock at systemd-networkd on section 1.7.
-This was Arch telling me to do network configuration through the root terminal, here were the steps I took:
+So I followed through the [installation guide for Arch](https://wiki.archlinux.org/title/Installation_guide) but I decided to make my own guide for my notes whenever the knowledge escapes me. Here are my steps:
   
 1. First of all, I made the new VM, I left all the default options on except I gave it lots of disk space (16GB) and lots of RAM then I went into Virtual Machine Settings > Options > Advanced > Firmware type > set to UEFI. This sets it to UEFI booting.
   
@@ -42,14 +41,14 @@ By doing `fdisk -l` again. I can see that VMware gave me 8GiB that I need to par
 I need to achieve 3 goals:
 - For starters, I need a partition table. I decide on using gpt, since I'm using gpt I need an efi partition, since I need an efi partition it needs to be a FAT32 partition type and it also needs to be 1GiB based on this [example](https://wiki.archlinux.org/title/Installation_guide#Example_layouts).  
 - Next I want a [swap partition](https://opensource.com/article/18/9/swap-space-linux-systems) to boost performance (this VM might be opening some big pcaps) so good size for a swap partition is twice the amount of RAM which will be 2GiB.
-- And finally I want ext4 for my / directory which I will store my user files. The ext4 partition will start from 3GiB to 7GiB in the disk drive. The remaining 1 GiB will be free space to reduce fragmentation.
+- And finally I want ext4 for my / directory which I will store my user files. The ext4 partition will start from 3GiB to 14GiB in the disk drive. The remaining 2 GiB will be free space to reduce fragmentation.
   
 To actually partition my disk on the VM machine I will be using `parted`. I do `parted /dev/sda` to enter the shell for that disk.
 `mklabel gpt` to set the partition table.
 `unit MiB` to set the u
 `mkpart primary fat32 1024KiB 1024MiB` to make a FAT32 partition for the EFI /boot dir.
 `mkpart primary linux-swap 1GiB 3GiB` to make a 2GiB linux swap partition.
-`mkpart primary ext4 3GiB 14GiB` to make a 4GiB / ext4 file dir.
+`mkpart primary ext4 3GiB 14GiB` to make an 11 GiB / ext4 file dir.
   
 Then I use `print free` to verify the used and remaining disk space. And then do `quit`.
   
