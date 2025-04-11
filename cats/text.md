@@ -23,3 +23,6 @@
 [Intro to Hexadecimals](https://learn.sparkfun.com/tutorials/hexadecimal/all)
 [Video about breaking rsa](https://www.youtube.com/watch?v=-ShwJqAalOk)
 [Regex 101](https://regexlearn.com/learn/regex101)
+[Fortran](https://en.wikipedia.org/wiki/Fortran)
+[Wikibooks](https://en.wikibooks.org/wiki/Main_Page)
+[Considered Harmful?](https://en.wikipedia.org/wiki/Considered_harmful)

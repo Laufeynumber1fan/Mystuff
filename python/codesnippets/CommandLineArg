@@ -1,0 +1,13 @@
+# 
+# How to accept command line args when a script is invoked.
+# Use sys.argv
+
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print("Need one argument.")
+        return -1
+
+if __name__ == '__main__':
+   main()

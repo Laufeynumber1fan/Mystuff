@@ -1,0 +1,28 @@
+#
+# Generate an empty 2D list to fill with cells
+# list_2d = [[0 for _ in range(x)] for _ in range(y)]
+# Reminder: 2D list is rows THEN columns. list_2d[rows][columns]
+
+x = 10 #row length
+y = 10 #column length
+
+######## DO NOT DO THIS ########
+list_2d = [[0] * x] * y
+
+# When you multiply the list by y then you will make identical copies of the same x-length list
+# An identical copy of lists will share memory registers
+
+'''
+# Assigning on the 1st column will assign every other column because they own the same memory register
+list_2d[0][0] = 1
+
+[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0], ...]
+'''
+
+# To make a proper 2D list recursively use for loops!
+list_2d = [[0 for _ in range(x)] for _ in range(y)]
+
+
+

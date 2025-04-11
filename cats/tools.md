@@ -8,3 +8,4 @@ sliver - c2 framework
 [velociraptor](https://docs.velociraptor.app) - c2 framework
 objdump - info about object files, prints out assembly code of exe
 xxd - prints hexdump of a file after given input
+radare - open source reverse engineering tool
