@@ -1,4 +1,3 @@
-| Source Port   | Destination Port |
-| ------------- |:-------------:| 
-| Length      | Checksum | 
-| :Data: |
+| Source Port        | Destination Port  |
+| :-------------:    | :-------------:   | 
+| Length             | Checksum          | 
