@@ -1,11 +1,4 @@
 <table>
-    <thead>
-        <tr>
-            <th>Layer 1</th>
-            <th>Layer 2</th>
-            <th>Layer 3</th>
-        </tr>
-    </thead>
     <tbody>
         <tr>
             <td rowspan=4>L1 Name</td>
