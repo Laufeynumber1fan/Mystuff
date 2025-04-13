@@ -1,12 +1,12 @@
 ## ICMP
-<table>
+<table align=center>
     <tbody>
         <tr>
             <td>Type</td>
             <td>Code</td>
         </tr>
         <tr>
-            <td colspan=2  align=center>Checksum</td>
+            <td colspan=2  >Checksum</td>
         </tr>
         <tr>
             <td>Identifier</td>
