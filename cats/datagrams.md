@@ -1,5 +1,5 @@
 ## ICMP
-<table align=center>
+<table text-align=center>
     <tbody>
         <tr>
             <td>Type</td>
