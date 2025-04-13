@@ -1,19 +1,44 @@
+## [ARP]()
+<table>
+    <tbody align=center>
+        <tr>
+            <td colspan=4>Hardware type</td>
+            <td colspan=4>Protocol type</td>
+        </tr>
+        <tr>
+            <td colspan=4>Hardware size</td>
+            <td colspan=4>Protocol size</td>
+        </tr>
+        <tr>
+            <td colspan=8>Opcode (request/reply/etc)</td>
+        </tr>
+        <tr>
+            <td colspan=2>Sender MAC</td>
+            <td colspan=2>Sender Protocol Addr. (Sender IP)</td>
+            <td colspan=2>Target MAC</td>
+            <td colspan=2>Target Protocol Addr. (Target IP)</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure)
 <table>
     <tbody align=center>
         <tr>
-            <td>Type</td>
-            <td>Code</td>
+            <td colspan=4>Type</td>
+            <td colspan=4>Code</td>
         </tr>
         <tr>
-            <td colspan=2>Checksum</td>
+            <td colspan=8>Checksum</td>
         </tr>
         <tr>
-            <td>Identifier</td>
-            <td>Sequence No.</tr>
+            <td colspan=4>Identifier</td>
+            <td colspan=4>Sequence No.</tr>
         </tr>
         <tr>
-            <td colspan=2>Data</td>
+            <td colspan=8>Data</td>
         </tr>
     </tbody>
 </table>
@@ -22,26 +47,27 @@
 <table>
     <tbody align=center>
         <tr>
-            <td colspan=2>Source Port</td>
-            <td colspan=2>Dest. Port</td>
+            <td colspan=4>Source Port</td>
+            <td colspan=4>Dest. Port</td>
         </tr>
         <tr>
-            <td colspan=4>Sequence No.</td>
+            <td colspan=8>Sequence No.</td>
         </tr>
         <tr>
-            <td colspan=4>Ack. No.</td>
+            <td colspan=8>Ack. No.</td>
         </tr>
         <tr>
-            <td>Data Offset</td>
-            <td>Flags</td>
-            <td colspan=2>Window</tr>
+            <td colspan=2>Data Offset</td>
+            <td colspan=2>Flags</td>
+            <td colspan=4>Window</tr>
         </tr>
         <tr>
-            <td colspan=2>Checksum</td>
-            <td colspan=2>Urgent Pointer</td>
+            <td colspan=4>Checksum</td>
+            <td colspan=4>Urgent Pointer</td>
         </tr>
         <tr>
-            <td colspan=4>Data</td>
+            <td colspan=8>Data</td>
         </tr>
     </tbody>
 </table>
+
