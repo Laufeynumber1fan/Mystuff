@@ -1,6 +1,6 @@
 ## ICMP
-<table text-align=center>
-    <tbody>
+<table>
+    <tbody align=center>
         <tr>
             <td>Type</td>
             <td>Code</td>
