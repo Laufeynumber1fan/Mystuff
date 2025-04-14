@@ -59,9 +59,9 @@
             <td>Name[*]</td>
             <td>Type[2]</td>
             <td>Class[2]</td>
-            <td>Time To Live[4]</td>
+            <td>TTL[4]</td>
             <td>Data Length[2]</td>
-            </td>IP Address[4]</td>
+            <td>IP Address[4]</td>
         </tr>
     </tbody>
 </table>
@@ -113,4 +113,32 @@
         </tr>
     </tbody>
 </table>
+  
 `Destination` and `Source` ports will determine the protocol of the payload. For example, an SSH connection is encapsulated within a TCP packet, the `destination` of `port 22` will identify the TCP payload as an SSH packet.
+
+## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+<table>
+	<thead align=right>
+    	<th scope="col">00</th>
+        <th scope="col">01</th>
+        <th scope="col">02</th>
+        <th scope="col">03</th>
+        <th scope="col">04</th>
+        <th scope="col">05</th>
+        <th scope="col">06</th>
+        <th scope="col">07</th>
+        <th scope="col">08</th>
+        <th scope="col">09</th>
+        <th scope="col">10</th>
+    </thead>
+    <tbody align=center>
+        <tr>
+            <td colspan=2>Transaction ID</td>
+            <td colspan=2>Flags</td>
+            <td colspan=2>Questions</td>
+            <td colspan=2>Answer RRs</td>
+            <td colspan=2>Authority RRs</td>
+            <td colspan=2>Additional RRs</td>
+        </tr>
+    </tbody>
+</table>
