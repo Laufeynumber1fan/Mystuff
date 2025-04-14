@@ -31,19 +31,18 @@
         <th>27</th>
         <th>28</th>
         <th>29</th>
-        <th>30</th>
     </thead>
     <tbody align=center>
         <tr>
-            <td colspan=4>Hardware type</td>
-            <td colspan=4>Protocol type</td>
-            <td colspan=4>Hardware size</td>
-            <td colspan=4>Protocol size</td>
-            <td colspan=8>Opcode (request/reply/etc)</td>
-            <td colspan=2>Sender MAC</td>
-            <td colspan=2>Sender Protocol Addr. (Sender IP)</td>
-            <td colspan=2>Target MAC</td>
-            <td colspan=2>Target Protocol Addr. (Target IP)</td>
+            <td colspan=2>Hardware type</td>
+            <td colspan=2>Protocol type</td>
+            <td colspan=1>Hardware size</td>
+            <td colspan=1>Protocol size</td>
+            <td colspan=2>Opcode (request/reply/etc)</td>
+            <td colspan=6>Sender MAC</td>
+            <td colspan=4>Sender IP</td>
+            <td colspan=6>Target MAC</td>
+            <td colspan=4>Target IP</td>
         </tr>
     </tbody>
 </table>
@@ -77,7 +76,7 @@
             <td colspan=2>Answer RRs</td>
             <td colspan=2>Authority RRs</td>
             <td colspan=2>Additional RRs</td>
-            <td>Name (varying length)</td>
+            <td>Domain Name (*)</td>
             <td colspan=2>Type</td>
             <td colspan=2>Class</td>
         </tr>
@@ -123,7 +122,7 @@
             <td colspan=2>Answer RRs</td>
             <td colspan=2>Authority RRs</td>
             <td colspan=2>Additional RRs</td>
-            <td>Name (varying length)</td>
+            <td>Domain Name (*)</td>
             <td colspan=2>Type</td>
             <td colspan=2>Class</td>
             <td colspan=4>TTL</td>
@@ -135,23 +134,50 @@
 
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure)
 <table>
+    <thead align=center>
+        <th>00</th>
+        <th>01</th>
+        <th>02</th>
+        <th>03</th>
+        <th>04</th>
+        <th>05</th>
+        <th>06</th>
+        <th>07</th>
+        <th>08</th>
+        <th>09</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <th>16</th>
+        <th>17</th>
+        <th>18</th>
+        <th>19</th>
+        <th>20</th>
+        <th>21</th>
+        <th>22</th>
+        <th>23</th>
+        <th>24</th>
+        <th>25</th>
+        <th>26</th>
+        <th>27</th>
+        <th>28</th>
+        <th>29</th>
+    </thead>
     <tbody align=center>
         <tr>
-            <td colspan=4>Type</td>
-            <td colspan=4>Code</td>
-        </tr>
-        <tr>
-            <td colspan=8>Checksum</td>
-        </tr>
-        <tr>
-            <td colspan=4>Identifier</td>
-            <td colspan=4>Sequence Number</tr>
-        </tr>
-        <tr>
-            <td colspan=8>Data</td>
+            <td>Type</td>
+            <td>Code</td>
+            <td>Checksum</td>
+            <td>Identifier</td>
+            <td>Sequence No.</td>
+            <td>Data<sup>1</sup></td>
         </tr>
     </tbody>
 </table>
+[1]: The minimum packet size of ICMP is 64 bytes. The data payload can be used for padding bytes.
   
 ## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
 <table>
