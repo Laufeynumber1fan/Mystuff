@@ -44,24 +44,49 @@
 
 ## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records)
 <table>
+	<thead align=right>
+    	<th scope="col">00</th>
+        <th scope="col">01</th>
+        <th scope="col">02</th>
+        <th scope="col">03</th>
+        <th scope="col">04</th>
+        <th scope="col">05</th>
+        <th scope="col">06</th>
+        <th scope="col">07</th>
+        <th scope="col">08</th>
+        <th scope="col">09</th>
+        <th scope="col">10</th>
+        <th scope="col">11</th>
+        <th scope="col">*</th>
+        <th scope="col">*+1</th>
+        <th scope="col">*+2</th>
+        <th scope="col">*+3</th>
+        <th scope="col">*+4</th>
+        <th scope="col">*+5</th>
+        <th scope="col">*+6</th>
+        <th scope="col">*+7</th>
+        <th scope="col">*+8</th>
+        <th scope="col">*+9</th>
+        <th scope="col">*+10</th>
+        <th scope="col">*+11</th>
+        <th scope="col">*+12</th>
+        <th scope="col">*+13</th>
+        <th scope="col">*+14</th>
+    </thead>
     <tbody align=center>
         <tr>
-            <td colspan=3>Transaction ID[2]</td>
-            <td colspan=3>Flags[2]</td>
-        </tr>
-        <tr>
-            <td colspan=2>Questions[2]</td>
-            <td colspan=2>Answer RRs[2]</td>
-            <td>Authority RRs[2]</td>
-            <td>Additional RRs[2]</td>
-        </tr>
-        <tr>
-            <td>Name[*]</td>
-            <td>Type[2]</td>
-            <td>Class[2]</td>
-            <td>TTL[4]</td>
-            <td>Data Length[2]</td>
-            <td>IP Address[4]</td>
+            <td colspan=2>Transaction ID</td>
+            <td colspan=2>Flags</td>
+            <td colspan=2>Questions</td>
+            <td colspan=2>Answer RRs</td>
+            <td colspan=2>Authority RRs</td>
+            <td colspan=2>Additional RRs</td>
+            <td>Name (varying length)</td>
+            <td colspan=2>Type</td>
+            <td colspan=2>Class</td>
+            <td colspan=4>TTL</td>
+            <td colspan=2>Data Length</td>
+            <td colspan=4>IP Address</td>
         </tr>
     </tbody>
 </table>
@@ -115,30 +140,3 @@
 </table>
   
 `Destination` and `Source` ports will determine the protocol of the payload. For example, an SSH connection is encapsulated within a TCP packet, the `destination` of `port 22` will identify the TCP payload as an SSH packet.
-
-## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
-<table>
-	<thead align=right>
-    	<th scope="col">00</th>
-        <th scope="col">01</th>
-        <th scope="col">02</th>
-        <th scope="col">03</th>
-        <th scope="col">04</th>
-        <th scope="col">05</th>
-        <th scope="col">06</th>
-        <th scope="col">07</th>
-        <th scope="col">08</th>
-        <th scope="col">09</th>
-        <th scope="col">10</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <td colspan=2>Transaction ID</td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Questions</td>
-            <td colspan=2>Answer RRs</td>
-            <td colspan=2>Authority RRs</td>
-            <td colspan=2>Additional RRs</td>
-        </tr>
-    </tbody>
-</table>
