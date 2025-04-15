@@ -143,6 +143,33 @@
         <th>05</th>
         <th>06</th>
         <th>07</th>
+        <th>*</th>
+    </thead>
+    <tbody align=center>
+        <tr>
+            <td>Type</td>
+            <td>Code</td>
+            <td>Checksum</td>
+            <td>Identifier</td>
+            <td>Sequence No.</td>
+            <td>Data<sup>1</sup></td>
+        </tr>
+    </tbody>
+</table>
+  
+1:  The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
+  
+## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+<table>
+    <thead align=center>
+        <th>00</th>
+        <th>01</th>
+        <th>02</th>
+        <th>03</th>
+        <th>04</th>
+        <th>05</th>
+        <th>06</th>
+        <th>07</th>
         <th>08</th>
         <th>09</th>
         <th>10</th>
@@ -156,55 +183,33 @@
         <th>18</th>
         <th>19</th>
         <th>20</th>
-        <th>21</th>
-        <th>22</th>
-        <th>23</th>
-        <th>24</th>
-        <th>25</th>
-        <th>26</th>
-        <th>27</th>
-        <th>28</th>
-        <th>29</th>
     </thead>
     <tbody align=center>
         <tr>
-            <td>Type</td>
-            <td>Code</td>
-            <td>Checksum</td>
-            <td>Identifier</td>
+            <td>Src. Port</td>
+            <td>Dest. Port</td>
             <td>Sequence No.</td>
-            <td>Data<sup>1</sup></td>
+            <td>Ack. No.</td>
+            <td>Sequence No.</td>
+            <td>Data Offset<sup>1</sup></td>
+            <td>Flags</td>
         </tr>
     </tbody>
 </table>
-[1]: The minimum packet size of ICMP is 64 bytes. The data payload can be used for padding bytes.
-  
-## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
 <table>
+    <thead align=center>
+        <th colspan=8>00:40</th>
+        <th>*</th>
+    </thead>
     <tbody align=center>
         <tr>
-            <td colspan=4>Source Port</td>
-            <td colspan=4>Destination Port</td>
-        </tr>
-        <tr>
-            <td colspan=8>Sequence Number</td>
-        </tr>
-        <tr>
-            <td colspan=8>Acknowledgement Number.</td>
-        </tr>
-        <tr>
-            <td colspan=2>Data Offset</td>
-            <td colspan=2>Flags</td>
-            <td colspan=4>Window</tr>
-        </tr>
-        <tr>
-            <td colspan=4>Checksum</td>
-            <td colspan=4>Urgent Pointer</td>
-        </tr>
-        <tr>
-            <td colspan=8>Data</td>
+            <td>Options<sup>2</sup></td>
+            <td>Data</td>
         </tr>
     </tbody>
 </table>
   
-`Destination` and `Source` ports will determine the protocol of the payload. For example, an SSH connection is encapsulated within a TCP packet, the `destination` of `port 22` will identify the TCP payload as an SSH packet.
+1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
+2: Contains TCP config data with up to 10 different types of options. Multiple options can be inside this segment with up to a valid size of 0-40 bytes, [see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure).  
+
+
