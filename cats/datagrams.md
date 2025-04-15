@@ -179,10 +179,8 @@
         <th>14</th>
         <th>15</th>
         <th>16</th>
-        <th>17</th>
-        <th>18</th>
-        <th>19</th>
-        <th>20</th>
+        <th colspan=8>00:40</th>
+        <th>*</th>
     </thead>
     <tbody align=center>
         <tr>
@@ -190,27 +188,18 @@
             <td colspan=1>Dest. Port</td>
             <td colspan=4>Sequence No.</td>
             <td colspan=4>Ack. No.</td>
-            <td>Data Offset<sup>1</sup></td>
+            <td>Data Offset<sup>[1]</sup></td>
             <td colspan=2>Flags</td>
             <td colspan=2>Window</td>
             <td colspan=2>Urg. Pointer</td>
-        </tr>
-    </tbody>
-</table>
-<table>
-    <thead align=center>
-        <th colspan=8>00:40</th>
-        <th>*</th>
-    </thead>
-    <tbody align=center>
-        <tr>
             <td colspan=8>Options<sup>[2]</sup></td>
-            <td>Data</td>
+            <td>Data<sup>[3]</sup></td>
         </tr>
     </tbody>
 </table>
   
 1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
 2: Contains TCP config data with up to 10 different types of options. Multiple options can be inside this segment with up to a valid size of 0-40 bytes, [see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure).  
+3: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).
 
 
