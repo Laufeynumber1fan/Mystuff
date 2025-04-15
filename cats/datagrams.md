@@ -152,7 +152,7 @@
             <td>Checksum</td>
             <td>Identifier</td>
             <td>Sequence No.</td>
-            <td>Data<sup>1</sup></td>
+            <td>Data<sup>[1]</sup></td>
         </tr>
     </tbody>
 </table>
@@ -186,13 +186,14 @@
     </thead>
     <tbody align=center>
         <tr>
-            <td>Src. Port</td>
-            <td>Dest. Port</td>
-            <td>Sequence No.</td>
-            <td>Ack. No.</td>
-            <td>Sequence No.</td>
+            <td colspan=1>Src. Port</td>
+            <td colspan=1>Dest. Port</td>
+            <td colspan=4>Sequence No.</td>
+            <td colspan=4>Ack. No.</td>
             <td>Data Offset<sup>1</sup></td>
-            <td>Flags</td>
+            <td colspan=2>Flags</td>
+            <td colspan=2>Window</td>
+            <td colspan=2>Urg. Pointer</td>
         </tr>
     </tbody>
 </table>
@@ -203,7 +204,7 @@
     </thead>
     <tbody align=center>
         <tr>
-            <td>Options<sup>2</sup></td>
+            <td colspan=8>Options<sup>[2]</sup></td>
             <td>Data</td>
         </tr>
     </tbody>
