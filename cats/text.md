@@ -28,3 +28,8 @@
 [Considered Harmful?](https://en.wikipedia.org/wiki/Considered_harmful)  
 [Data Encapsulation between Layer 2-4](https://www.youtube.com/watch?v=P5jC8D5zndc)
 [TCP Protocol Articles](https://www.firewall.cx/networking/network-protocols/tcp-udp-protocol.html)
+[Differences between TLS1.2 and TLS1.3](https://www.a10networks.com/glossary/key-differences-between-tls-1-2-and-tls-1-3/)
+[All TLS versions](https://www.clickssl.net/blog/tls-versions)
+[Some guy's wireshark notes](https://wiki.wireshark.org)
+[Wireshark Filter Documentation](https://www.wireshark.org/docs/dfref/)
+[Weird trick to install a Win10 iso](https://www.reddit.com/r/windows/comments/1f7jvrf/comment/ll7x4ov/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)

@@ -1,4 +1,4 @@
-## [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure)
+## [L2] [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure)
 <table>
     <thead align=center>
         <th>00</th>
@@ -47,7 +47,7 @@
     </tbody>
 </table>
 
-## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section)
+## [L7:53] [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section)
 <table>
     <thead align=center>
         <th>00</th>
@@ -83,7 +83,7 @@
     </tbody>
 </table>
 
-## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records)
+## [L7:53] [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records)
 <table>
 	<thead align=center>
     	<th>00</th>
@@ -132,7 +132,7 @@
     </tbody>
 </table>
 
-## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure)
+## [L3] [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure)
 <table>
     <thead align=center>
         <th>00</th>
@@ -159,7 +159,69 @@
   
 1:  The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
   
-## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+## [L4] [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+<table>
+    <thead align=center>
+        <th></th>
+        <th>00</th>
+        <th>01</th>
+        <th>02</th>
+        <th>03</th>
+        <th>04</th>
+        <th>05</th>
+        <th>06</th>
+        <th>07</th>
+        <th>08</th>
+        <th>09</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <th>16</th>
+        <th colspan=8>17:57</th>
+        <th>*</th>
+    </thead>
+    <tbody align=center>
+        <tr>
+            <th>Name</th>
+            <td>Source Port</td>
+            <td>Dest. Port</td>
+            <td colspan=4>Sequence No.</td>
+            <td colspan=4>Ack. No.</td>
+            <td>Data Offset<sup>[1]</sup></td>
+            <td colspan=2>Flags<sup>[2]</sup></td>
+            <td colspan=2>Window</td>
+            <td colspan=2>Urg. Pointer</td>
+            <td colspan=8>Options<sup>[3]</sup></td>
+            <td>Data<sup>[4]</sup></td>
+        </tr>
+        <tr>
+            <th>[Wireshark Filters](https://www.wireshark.org/docs/dfref/t/tcp.html)</th>
+            <td>tcp.srcport</td>
+            <td>tcp.dstport</td>
+            <td colspan=4>tcp.seq_raw</td>
+            <td colspan=4>tcp.ack</td>
+            <td>tcp.hdr_len<sup>[1]</sup></td>
+            <td colspan=2>tcp.flags<sup>[2]</sup></td>
+            <td colspan=2>tcp.window_size_value<sup>[5]</sup></td>
+            <td colspan=2>tcp.urgent_pointer</td>
+            <td colspan=8>tcp.options<sup>[2][6]</sup></td>
+            <td>Data<sup>[3]</sup></td>
+        </tr>
+    </tbody>
+</table>
+  
+1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
+2: 
+3: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
+4: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).  
+5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more])(https://www.lumen.com/help/en-us/network/tcp-windowing.html).  
+6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)
+
+  
+## [L4,L7:443] [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 <table>
     <thead align=center>
         <th>00</th>
@@ -184,8 +246,8 @@
     </thead>
     <tbody align=center>
         <tr>
-            <td colspan=1>Src. Port</td>
-            <td colspan=1>Dest. Port</td>
+            <td>Content Type</td>
+            <td>Dest. Port</td>
             <td colspan=4>Sequence No.</td>
             <td colspan=4>Ack. No.</td>
             <td>Data Offset<sup>[1]</sup></td>
@@ -197,9 +259,4 @@
         </tr>
     </tbody>
 </table>
-  
-1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
-2: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
-3: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).
-
 
