@@ -198,7 +198,7 @@
             <td>Data<sup>[4]</sup></td>
         </tr>
         <tr>
-            <th>[Wireshark Filters](https://www.wireshark.org/docs/dfref/t/tcp.html)</th>
+            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html>https://www.wireshark.org/docs/dfref/t/tcp.html</th>
             <td>tcp.srcport</td>
             <td>tcp.dstport</td>
             <td colspan=4>tcp.seq_raw</td>
@@ -208,7 +208,7 @@
             <td colspan=2>tcp.window_size_value<sup>[5]</sup></td>
             <td colspan=2>tcp.urgent_pointer</td>
             <td colspan=8>tcp.options<sup>[2][6]</sup></td>
-            <td>Data<sup>[3]</sup></td>
+            <td>tcp.segment_data<sup>[3][7]</sup></td>
         </tr>
     </tbody>
 </table>
@@ -219,6 +219,7 @@
 4: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).  
 5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more])(https://www.lumen.com/help/en-us/network/tcp-windowing.html).  
 6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)
+7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`
 
   
 ## [L4,L7:443] [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security)
