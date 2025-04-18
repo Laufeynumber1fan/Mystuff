@@ -35,6 +35,7 @@
     </thead>
     <tbody align=center>
         <tr>
+            <th>Fields</th>
             <td colspan=2>Hardware type</td>
             <td colspan=2>Protocol type</td>
             <td colspan=1>Hardware size</td>
@@ -46,17 +47,16 @@
             <td colspan=4>Target IP</td>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png></a>Filters</th>
-            <td>tcp.srcport</td>
-            <td>tcp.dstport</td>
-            <td colspan=4>tcp.seq_raw</td>
-            <td colspan=4>tcp.ack</td>
-            <td>tcp.hdr_len<sup>[1]</sup></td>
-            <td colspan=2>tcp.flags<sup>[2]</sup></td>
-            <td colspan=2>tcp.window_size_value<sup>[5]</sup></td>
-            <td colspan=2>tcp.urgent_pointer</td>
-            <td colspan=8>tcp.options<sup>[2][6]</sup></td>
-            <td>tcp.segment_data<sup>[3][7]</sup></td>
+            <th><a href=https://www.wireshark.org/docs/dfref/a/arp.htmll><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <td colspan=2>arp.hw.type</td>
+            <td colspan=2>arp.proto.type</td>
+            <td colspan=1>arp.hw.size</td>
+            <td colspan=1>arp.proto.size</td>
+            <td colspan=2>arp.opcode</td>
+            <td colspan=6>arp.src.hw_mac </td>
+            <td colspan=4>arp.src.proto_ipv4</td>
+            <td colspan=6>arp.dst.hw_mac</td>
+            <td colspan=4>arp.dst.proto_ipv4</td>
         </tr>
     </tbody>
 </table>
@@ -212,7 +212,7 @@
             <td>Data<sup>[4]</sup></td>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png></a>Filters</th>
+            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
             <td>tcp.srcport</td>
             <td>tcp.dstport</td>
             <td colspan=4>tcp.seq_raw</td>
