@@ -1,6 +1,7 @@
-## [L2] [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure)
+## [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure) [Layer 2] 
 <table>
     <thead align=center>
+        <th>00</th>
         <th>00</th>
         <th>01</th>
         <th>02</th>
@@ -44,10 +45,23 @@
             <td colspan=6>Target MAC</td>
             <td colspan=4>Target IP</td>
         </tr>
+        <tr>
+            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png></th>
+            <td>tcp.srcport</td>
+            <td>tcp.dstport</td>
+            <td colspan=4>tcp.seq_raw</td>
+            <td colspan=4>tcp.ack</td>
+            <td>tcp.hdr_len<sup>[1]</sup></td>
+            <td colspan=2>tcp.flags<sup>[2]</sup></td>
+            <td colspan=2>tcp.window_size_value<sup>[5]</sup></td>
+            <td colspan=2>tcp.urgent_pointer</td>
+            <td colspan=8>tcp.options<sup>[2][6]</sup></td>
+            <td>tcp.segment_data<sup>[3][7]</sup></td>
+        </tr>
     </tbody>
 </table>
 
-## [L7:53] [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section)
+## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
 <table>
     <thead align=center>
         <th>00</th>
@@ -83,7 +97,7 @@
     </tbody>
 </table>
 
-## [L7:53] [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records)
+## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
 <table>
 	<thead align=center>
     	<th>00</th>
@@ -132,7 +146,7 @@
     </tbody>
 </table>
 
-## [L3] [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure)
+## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
 <table>
     <thead align=center>
         <th>00</th>
@@ -159,7 +173,7 @@
   
 1:  The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
   
-## [L4] [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure) [Layer 4]
 <table>
     <thead align=center>
         <th></th>
@@ -185,7 +199,7 @@
     </thead>
     <tbody align=center>
         <tr>
-            <th>Name</th>
+            <th>Fields</th>
             <td>Source Port</td>
             <td>Dest. Port</td>
             <td colspan=4>Sequence No.</td>
@@ -217,9 +231,9 @@
 2: 
 3: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
 4: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).  
-5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more](https://www.lumen.com/help/en-us/network/tcp-windowing.html)).
-6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)
-7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`
+5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more](https://www.lumen.com/help/en-us/network/tcp-windowing.html)).  
+6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)  
+7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`  
 
   
 ## [L4,L7:443] [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security)
