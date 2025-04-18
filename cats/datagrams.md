@@ -177,11 +177,11 @@
     </tbody>
 </table>
   
-1: The rest of the fields are inside a DNS response. The first field of the response `Domain Name` has a variable size
-2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).
-3: i.e. DNS Record Type
-4: `dns.aaaa` for AAAA, `dns.a` for A, `dns.cname` for CNAME, etc. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).
-
+1: The rest of the fields are inside a DNS response. The first field of the response `Domain Name` has a variable size  
+2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).  
+3: i.e. DNS Record Type  
+4: `dns.aaaa` for AAAA, `dns.a` for A, `dns.cname` for CNAME, etc. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).  
+  
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
 <table>
     <thead align=center>
