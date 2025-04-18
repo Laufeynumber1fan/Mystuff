@@ -212,7 +212,7 @@
             <td>Data<sup>[4]</sup></td>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png style="width:64px;"></a>Filters</th>
+            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png></a>Filters</th>
             <td>tcp.srcport</td>
             <td>tcp.dstport</td>
             <td colspan=4>tcp.seq_raw</td>
