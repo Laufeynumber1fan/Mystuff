@@ -198,7 +198,7 @@
             <td>Data<sup>[4]</sup></td>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html>https://www.wireshark.org/docs/dfref/t/tcp.html</th>
+            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html>Wireshark Filters</th>
             <td>tcp.srcport</td>
             <td>tcp.dstport</td>
             <td colspan=4>tcp.seq_raw</td>
@@ -217,7 +217,7 @@
 2: 
 3: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
 4: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).  
-5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more])(https://www.lumen.com/help/en-us/network/tcp-windowing.html).  
+5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more](https://www.lumen.com/help/en-us/network/tcp-windowing.html)).
 6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)
 7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`
 
