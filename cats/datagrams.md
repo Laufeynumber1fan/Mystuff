@@ -30,16 +30,14 @@
         <th>25</th>
         <th>26</th>
         <th>27</th>
-        <th>28</th>
-        <th>29</th>
     </thead>
     <tbody align=center>
         <tr>
             <th>Fields</th>
             <td colspan=2>Hardware type</td>
             <td colspan=2>Protocol type</td>
-            <td colspan=1>Hardware size</td>
-            <td colspan=1>Protocol size</td>
+            <td colspan=1>Hardware size<sup>[1]</sup></td>
+            <td colspan=1>Protocol size<sup>[1]</sup></td>
             <td colspan=2>Opcode (request/reply/etc)</td>
             <td colspan=6>Sender MAC</td>
             <td colspan=4>Sender IP</td>
@@ -47,11 +45,11 @@
             <td colspan=4>Target IP</td>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/a/arp.htmll><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <th><a href=https://www.wireshark.org/docs/dfref/a/arp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
             <td colspan=2>arp.hw.type</td>
             <td colspan=2>arp.proto.type</td>
-            <td colspan=1>arp.hw.size</td>
-            <td colspan=1>arp.proto.size</td>
+            <td colspan=1>arp.hw.size<sup>[1]</sup></td>
+            <td colspan=1>arp.proto.size<sup>[1]</sup></td>
             <td colspan=2>arp.opcode</td>
             <td colspan=6>arp.src.hw_mac </td>
             <td colspan=4>arp.src.proto_ipv4</td>
@@ -60,10 +58,13 @@
         </tr>
     </tbody>
 </table>
+  
+1: Hardware and Protocol size is usually only 1 byte long however this can increase depending on the devices and protocols used. In most cases IPv4 over Ethernet traffic will have 28 byte ARP packets, anything more is unideal.
 
 ## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
 <table>
     <thead align=center>
+        <th></th>
         <th>00</th>
         <th>01</th>
         <th>02</th>
@@ -84,7 +85,20 @@
     </thead>
     <tbody align=center>
         <tr>
+            <th>Fields</th>
             <td colspan=2>Transaction ID</td>
+            <td colspan=2>Flags</td>
+            <td colspan=2>Questions</td>
+            <td colspan=2>Answer RRs</td>
+            <td colspan=2>Authority RRs</td>
+            <td colspan=2>Additional RRs</td>
+            <td>Domain Name (*)</td>
+            <td colspan=2>Type</td>
+            <td colspan=2>Class</td>
+        </tr>
+        <tr>
+            <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <td colspan=2>dns.id</td>
             <td colspan=2>Flags</td>
             <td colspan=2>Questions</td>
             <td colspan=2>Answer RRs</td>
@@ -100,6 +114,7 @@
 ## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
 <table>
 	<thead align=center>
+        <th></th>
     	<th>00</th>
         <th>01</th>
         <th>02</th>
@@ -130,21 +145,42 @@
     </thead>
     <tbody align=center>
         <tr>
+            <th>Fields</th>
             <td colspan=2>Transaction ID</td>
             <td colspan=2>Flags</td>
             <td colspan=2>Questions</td>
             <td colspan=2>Answer RRs</td>
             <td colspan=2>Authority RRs</td>
             <td colspan=2>Additional RRs</td>
-            <td>Domain Name (*)</td>
-            <td colspan=2>Type</td>
+            <td>Domain Name<sup>[1]</sup></td>
+            <td colspan=2>Type<sup>[3]</sup></td>
             <td colspan=2>Class</td>
             <td colspan=4>TTL</td>
             <td colspan=2>Data Length</td>
-            <td colspan=4>IP Address</td>
+            <td colspan=4>DNS Record</td>
+        </tr>
+        <tr>
+            <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <td colspan=2>dns.id</td>
+            <td colspan=2>dns.flags<sup>[2]</sup></td>
+            <td colspan=2>dns.count.queries</td>
+            <td colspan=2>dns.count.answers</td>
+            <td colspan=2>dns.count.auth_rr</td>
+            <td colspan=2>dns.count.add_rr</td>
+            <td>dns.resp.name<sup>[1]</sup></td>
+            <td colspan=2>dns.resp.type</td>
+            <td colspan=2>dns.resp.class</td>
+            <td colspan=4>dns.resp.ttl</td>
+            <td colspan=2>dns.resp.len</td>
+            <td colspan=4>dns.*<sup>[4]</sup></td>
         </tr>
     </tbody>
 </table>
+  
+1: The rest of the fields are inside a DNS response. The first field of the response `Domain Name` has a variable size
+2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).
+3: i.e. DNS Record Type
+4: `dns.aaaa` for AAAA, `dns.a` for A, `dns.cname` for CNAME, etc. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).
 
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
 <table>
