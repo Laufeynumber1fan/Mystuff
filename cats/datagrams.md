@@ -1,6 +1,7 @@
 ## [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure) [Layer 2] 
 <table>
     <thead align=center>
+        <th></th>
         <th>00</th>
         <th>00</th>
         <th>01</th>
@@ -93,23 +94,27 @@
             <td colspan=2>Authority RRs</td>
             <td colspan=2>Additional RRs</td>
             <td>Domain Name (*)</td>
-            <td colspan=2>Type</td>
-            <td colspan=2>Class</td>
+            <td colspan=2>Type<sup>[2]</sup></td>
+            <td colspan=2>Class<sup>[3]</sup></td>
         </tr>
         <tr>
             <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
             <td colspan=2>dns.id</td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Questions</td>
-            <td colspan=2>Answer RRs</td>
-            <td colspan=2>Authority RRs</td>
-            <td colspan=2>Additional RRs</td>
-            <td>Domain Name (*)</td>
-            <td colspan=2>Type</td>
-            <td colspan=2>Class</td>
+            <td colspan=2>dns.flags<sup>[2]</sup></td>
+            <td colspan=2>dns.count.queries</td>
+            <td colspan=2>dns.count.answers</td>
+            <td colspan=2>dns.count.auth_rr</td>
+            <td colspan=2>dns.count.add_rr</td>
+            <td>dns.qry<sup></td>
+            <td colspan=2>dns.qry.type<sup>[2]</sup></td>
+            <td colspan=2>dns.qry.class<sup>[3]</sup></td>
         </tr>
     </tbody>
 </table>
+  
+1: The rest of the fields are inside a DNS query. The first field is a domain name with a variable size.  
+2: i.e. DNS Record Type  
+3: Defines how this DNS was transported. This is usually `IN` for Internet. Anything else may be anomalous.  
 
 ## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
 <table>
@@ -154,7 +159,7 @@
             <td colspan=2>Additional RRs</td>
             <td>Domain Name<sup>[1]</sup></td>
             <td colspan=2>Type<sup>[3]</sup></td>
-            <td colspan=2>Class</td>
+            <td colspan=2>Class<sup>[5]</sup></td>
             <td colspan=4>TTL</td>
             <td colspan=2>Data Length</td>
             <td colspan=4>DNS Record</td>
@@ -169,7 +174,7 @@
             <td colspan=2>dns.count.add_rr</td>
             <td>dns.resp.name<sup>[1]</sup></td>
             <td colspan=2>dns.resp.type</td>
-            <td colspan=2>dns.resp.class</td>
+            <td colspan=2>dns.resp.class<sup>[5]</sup></td>
             <td colspan=4>dns.resp.ttl</td>
             <td colspan=2>dns.resp.len</td>
             <td colspan=4>dns.*<sup>[4]</sup></td>
@@ -178,13 +183,15 @@
 </table>
   
 1: The rest of the fields are inside a DNS response. The first field of the response `Domain Name` has a variable size  
-2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).  
+2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).   
 3: i.e. DNS Record Type  
 4: `dns.aaaa` for AAAA, `dns.a` for A, `dns.cname` for CNAME, etc. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).  
+5: Defines how this DNS was transported. This is usually `IN` for Internet. Anything else may be anomalous.  
   
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
 <table>
     <thead align=center>
+        <th></th>
         <th>00</th>
         <th>01</th>
         <th>02</th>
@@ -197,17 +204,28 @@
     </thead>
     <tbody align=center>
         <tr>
-            <td>Type</td>
+            <th>Fields</th>
+            <td>Type<sup>[1]</sup></td>
             <td>Code</td>
-            <td>Checksum</td>
-            <td>Identifier</td>
-            <td>Sequence No.</td>
-            <td>Data<sup>[1]</sup></td>
+            <td colspan=2>Checksum</td>
+            <td colspan=2>Identifier</td>
+            <td colspan=2>Sequence No.</td>
+            <td>Data<sup>[2]</sup></td>
+        </tr>
+        <tr>
+            <th><a href=https://www.wireshark.org/docs/dfref/i/icmp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <td>icmp.type<sup>[1]</sup></td>
+            <td>Code</td>
+            <td colspan=2>Checksum</td>
+            <td colspan=2>Identifier</td>
+            <td colspan=2>Sequence No.</td>
+            <td>Data<sup>[2]</sup></td>
         </tr>
     </tbody>
 </table>
   
-1:  The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
+1: ICMP type as in ping request `icmp.type == 0`, ping reply `icmp.type == 8`, etc. See [list](https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml)  
+2: The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
   
 ## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure) [Layer 4]
 <table>
@@ -270,44 +288,31 @@
 5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more](https://www.lumen.com/help/en-us/network/tcp-windowing.html)).  
 6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)  
 7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`  
-
   
-## [L4,L7:443] [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+## [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security) [Layer 4 and 7]<sup>[1]</sup> TODO
 <table>
     <thead align=center>
+        <th></th>
         <th>00</th>
         <th>01</th>
         <th>02</th>
         <th>03</th>
         <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>12</th>
-        <th>13</th>
-        <th>14</th>
-        <th>15</th>
-        <th>16</th>
-        <th colspan=8>17:57</th>
-        <th>*</th>
     </thead>
     <tbody align=center>
         <tr>
+            <td>Fields</td>
             <td>Content Type</td>
-            <td>Dest. Port</td>
-            <td colspan=4>Sequence No.</td>
-            <td colspan=4>Ack. No.</td>
-            <td>Data Offset<sup>[1]</sup></td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Window</td>
-            <td colspan=2>Urg. Pointer</td>
-            <td colspan=8>Options<sup>[2]</sup></td>
-            <td>Data<sup>[3]</sup></td>
+            <td colspan=2>Version</td>
+            <td colspan=2>Length</td>
+        </tr>
+        <tr>
+            <th><a href=https://www.wireshark.org/docs/dfref/i/icmp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
+            <td><a href=https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-5>tls.record.content_type</a></td>
+            <td colspan=2>tls.record.version</td>
+            <td colspan=2>tls.record.length</td>
         </tr>
     </tbody>
 </table>
-
+  
+1: TLS operates at different ports as it is used by other protocols. 443 is TLS over HTTPS, 465 is TLS over SMTPS, etc.  
