@@ -1,8 +1,0 @@
-Fundamentals of Cybersec
-
-Networking
-OSI
-Programming
-Critical thinking
-Linux literacy
-Firewall, IPS, IDS
