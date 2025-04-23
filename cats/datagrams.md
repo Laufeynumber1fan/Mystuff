@@ -3,7 +3,6 @@
     <thead align=center>
         <th></th>
         <th>00</th>
-        <th>00</th>
         <th>01</th>
         <th>02</th>
         <th>03</th>

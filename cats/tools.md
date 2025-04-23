@@ -14,8 +14,16 @@ radare - open source reverse engineering tool
 <table>
     <tbody align=center>
         <tr>
+            <th><a href="https://www.dell.com/support/kbdoc/en-ca/000126090/what-is-vmware-carbon-black-cloud">Carbon Black</a></th>
+            <th>EDR and NGAV software</th>
+        </tr>
+        <tr>
             <th><a href="https://www.elastic.co/docs/get-started/the-stack">Elastic/Kibana</a></th>
             <th>Data visualisation</th>
+        </tr>
+        <tr>
+            <th><a href="https://jqlang.org/manual/">jq</a></th>
+            <th>Linux util for JSON parsing</th>
         </tr>
         <tr>
             <th><a href="https://sliver.sh/docs">Sliver</a></th>
