@@ -46,4 +46,9 @@
 [Heaven's Gate blog 1](http://rce.co/knockin-on-heavens-gate-dynamic-processor-mode-switching/)  
 [Heaven's Gate blog 2](https://redcanary.com/blog/threat-detection/heavens-gate-technique-on-linux/)  
 [B64 explained](https://www.youtube.com/watch?v=aUdKd0IFl34)  
-
+[tcpdump tl:dr](https://jvns.ca/tcpdump-zine.pdf)  
+[Informational comics about cybersec COOL](https://wizardzines.com)  
+[Stacktrace visualisers](https://github.com/brendangregg/FlameGraph)  
+[Linux weekly news](https://lwn.net)  
+[Really good WebAPI directory](https://devdocs.io)  
+[CSS styler](https://styled-components.com)

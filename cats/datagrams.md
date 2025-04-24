@@ -320,7 +320,7 @@
         <tr>
             <th>Fields</th>
             <td>Source Port</td>
-            <td>Dest. Port</td>
+            <td>Dst. Port</td>
             <td colspan=4>Sequence No.</td>
             <td colspan=4>Ack. No.</td>
             <td>Data Offset<sup>[1]</sup></td>
