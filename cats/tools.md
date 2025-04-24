@@ -50,7 +50,7 @@ TODO: Seperate these tools and classify for OS
             <th>C2 framework</th>
         </tr>
         <tr>
-            <th><a href="https://strace.io"><h6>B<h6>strace</a></th>
+            <th><a href="https://strace.io">strace</a></th>
             <th>Diagnostic, debugging and instructional userspace utility for Linux TODO:Malware analysis</th>
         </tr>
         <tr>

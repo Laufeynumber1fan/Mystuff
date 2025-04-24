@@ -51,3 +51,10 @@ This makes it much easier to do `sort | uniq | wc -l`
 `zeek -C -r foo.pcap LogAscii::use_json=T`  
 Make a separate dir for these json logs. This is useful for pretty printing zeek logs with `jq` or with firefox pretty print.  
 `zeek-cut` is no longer usable. Use `jq`, for ex. `jq -c '[."id.orig_h", ."query", ."answers"]' dns.log` (see [zeek doc](https://docs.zeek.org/en/master/log-formats.html#zeek-json-format-and-jq) & [jq manual](https://stedolan.github.io/jq/manual/))
+
+#### Proper way to report malicious URLs
+BAD | GOOD
+--- | ---
+[dontclickthiswebsite.com](https://www.youtube.com/watch?v=c8tGgVX9__Q) | dontclickthiswebsite[.]com  
+
+This is to prevent browsers and text editors from automatically making links to URLs or to stop people from acidentally clicking the link
