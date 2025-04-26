@@ -33,10 +33,10 @@ Cmdline args:
 
 Inside the shell:  
 How to search: `/PATTERN` and then press `n` to iterate from next or `Shift + n (Uppercase N)` to iterate previously.  
-`g` Jump to first line
-`G` Jump to last line
-`f` Forward one window
-`b` Backward one window
+`g` Jump to first line  
+`G` Jump to last line  
+`f` Forward one window  
+`b` Backward one window  
   
 TROUBLESHOOTING  
   
@@ -66,20 +66,28 @@ Combination of filter and args `tcpdump -r foo.pcap -ttttnXc 5 port 80`
   
 ### tshark
 Cmdline wireshark, wireshark filters are processed as cmdline arguments.  
-
-`-T` Specify different output formats like `json`, `text`, `fields`, etc.
-
-Help cmds:
-`-G` Prints every wireshark filter. Use injunction with `egrep` & `less`.  
-`-G protocols` Print just protol filters.
-
+  
+`-Y` Apply display filters<sup>[1]</sup>.  
+`-T` Specify different output formats like `json`, `text`, `fields`<sup>[1]</sup>, etc.  
 `-D` Lists all available interfaces to listen for traffic.  
-
+`-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2] 
+  
+Advanced help:  
+`-G` Prints every wireshark filter. Use injunction with `egrep "\sPATTERN\." | less -Sx40`.  
+`-G help` more info.
+`-G protocols`Find abbreviations of protocols.
+  
 Statistics:  
 `-z` Protocol Hierarchy  
 `-z help | less` Display help
 
-Examples:  
+[1a]: `-Y` and `-T` are the bread and butter, `-Y` finds packets based on the display filter. `-T` modifies the output to specific fields. See [1b]
+
+<ins>Examples</ins>:  
+[1b]: Display only dns queries `tshark -r foo.pcap -Y "dns.flags.response == 0" -T fields -e dns.qry.name`  
+[2a]: To display packet 100 verbosely `tshark -r foo.pcap -Y frame.number==100 -V`  
+[2b]: To display a specific tcp stream versbosely `tshark -r foo.pcap -Y "tcp.stream eq 0" -V`  
+  
 Filter help `tshark -G | egrep '\sip\.' | less -S -x40`
 <table>
     <tbody align=center>
@@ -107,6 +115,8 @@ Filter help `tshark -G | egrep '\sip\.' | less -S -x40`
 `tshark -r foo.pcap -E header=y -T fields -e ip.src -e ip.dst -e ip.proto -c 5`  
 `tshark -r foo.pcap -T fields -e ip.src -e ip.dst -e tcp.dstport tcp.flags==2 | sort | uniq -c | sort -rn | head`  
 
+  
+  
 ### xmllint  
   
 Check an xml file for format errors<sup>[[1]](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tshark)</sup> `xmllint foo.xml --noout`  
