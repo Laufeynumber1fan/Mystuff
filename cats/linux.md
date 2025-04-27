@@ -75,3 +75,12 @@ Go back to your working dir, the full command is then:
 Step 3: open the html into firefox
 `firefox test.html`  
 Now your shit has a drop down menu for packets, kinda like wireshark
+
+### Confusion around TCP sizes
+  
+tcp_hdr.len - Length of the TCP header  
+tcp.len - Length of TCP payload  
+ip_hdr.len - Lenght of the IP header  
+ip.len - Size of the IP frame (including headers, loks like)  
+frame.len - Length of the on-the-wire frame (ethernet, most probably)  
+frame.cap_len - Length of the capture  

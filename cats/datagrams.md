@@ -192,63 +192,15 @@
 	<thead align=center>
         <th></th>
     	<th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>*</th>
-        <th>*+1</th>
-        <th>*+2</th>
-        <th>*+3</th>
-        <th>*+4</th>
-        <th>*+5</th>
-        <th>*+6</th>
-        <th>*+7</th>
-        <th>*+8</th>
-        <th>*+9</th>
-        <th>*+10</th>
-        <th>*+11</th>
-        <th>*+12</th>
-        <th>*+13</th>
-        <th>*+14</th>
     </thead>
     <tbody align=center>
         <tr>
             <th>Fields</th>
-            <td colspan=2>Transaction ID</td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Questions</td>
-            <td colspan=2>Answer RRs</td>
-            <td colspan=2>Authority RRs</td>
-            <td colspan=2>Additional RRs</td>
-            <td>Domain Name<sup>[1]</sup></td>
-            <td colspan=2>Type<sup>[3]</sup></td>
-            <td colspan=2>Class<sup>[5]</sup></td>
-            <td colspan=4>TTL</td>
-            <td colspan=2>Data Length</td>
-            <td colspan=4>DNS Record</td>
+            <td></td>
         </tr>
         <tr>
             <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td colspan=2>dns.id</td>
-            <td colspan=2>dns.flags<sup>[2]</sup></td>
-            <td colspan=2>dns.count.queries</td>
-            <td colspan=2>dns.count.answers</td>
-            <td colspan=2>dns.count.auth_rr</td>
-            <td colspan=2>dns.count.add_rr</td>
-            <td>dns.resp.name<sup>[1]</sup></td>
-            <td colspan=2>dns.resp.type</td>
-            <td colspan=2>dns.resp.class<sup>[5]</sup></td>
-            <td colspan=4>dns.resp.ttl</td>
-            <td colspan=2>dns.resp.len</td>
-            <td colspan=4>dns.*<sup>[4]</sup></td>
+            <td></td>
         </tr>
     </tbody>
 </table>
