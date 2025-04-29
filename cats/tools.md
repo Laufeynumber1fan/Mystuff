@@ -14,6 +14,10 @@ TODO: Seperate these tools and classify for OS
             <th>Py: generate clean cmdline help commands for py programs</th>
         </tr>
         <tr>
+            <th><a href="https://www.man7.org/linux/man-pages/man1/diff.1.html">diff</a></th>
+            <th>Compare files one by one</th>
+        </tr>
+        <tr>
             <th><a href="https://www.elastic.co/docs/get-started/the-stack">Elastic/Kibana</a></th>
             <th>Data visualisation</th>
         </tr>

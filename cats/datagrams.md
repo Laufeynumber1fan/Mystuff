@@ -1,3 +1,6 @@
+TODO: Redo datagrams in 32bit intervals like in [RFC793](https://datatracker.ietf.org/doc/html/rfc793#section-3.1)
+or like wireshark 16bit  
+
 ## [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure) [Layer 2] 
 <table>
     <thead align=center>

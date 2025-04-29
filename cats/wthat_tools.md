@@ -69,13 +69,15 @@ Combination of filter and args `tcpdump -r foo.pcap -ttttnXc 5 port 80`
   
 ### tshark
 Cmdline wireshark, wireshark filters are processed as cmdline arguments.  
-**Only uses [capture filters](https://www.tcpdump.org/manpages/pcap-filter.7.html) for capturing pcaps `-f`. Only uses display filters<sup>refs:[1, ](https://www.wireshark.org/docs/man-pages/wireshark-filter.html)</sup><sup>[2](https://www.wireshark.org/docs/dfref/)</sup> for reading pcaps `-Y`.**
+**Only uses [capture filters](https://www.tcpdump.org/manpages/pcap-filter.7.html) for capturing pcaps `-f`. Only uses display filters<sup>refs:[1, ](https://www.wireshark.org/docs/man-pages/wireshark-filter.html)</sup><sup>[2, ](https://www.wireshark.org/docs/dfref/)</sup><sup>[3](https://tshark.dev/setup/)</sup> for reading pcaps `-Y`.**
   
 `-f` Capture packets with pcap-filters/tcpdump expressions.  
 `-Y` Apply [display filters](https://www.wireshark.org/docs/dfref/)<sup>[1]</sup>.  
 `-T` Specify different output formats like `json`, `text`, `fields`<sup>[1]</sup>, etc.  
 `-D` Lists all available interfaces to listen for traffic.  
-`-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2] 
+`-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2]  
+`-n` Disable name resolution  
+`-x` Display hex & ASCII dump  
   
 Advanced help:  
 `-G` Prints every wireshark filter. Use injunction with `egrep "\sPATTERN\." | less -Sx40`.  
