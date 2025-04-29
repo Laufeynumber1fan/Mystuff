@@ -25,6 +25,15 @@ One argument is that tcp.completeness values are more sequential in the TCP hand
 **Examples `tcp.completeness`:**  
 `tcp.completeness<4 && tcp.flags!=20` displays packets doing the SYN handshake but exclude any (RST, ACK) flags.  
 `tcp.completeness==31` displays packets doing the FIN handshake.  
+
+**TCP DATA PAYLOAD**  
+`tcp contains ****` can be used to filter out hexdumps of TCP payloads.  
+For example, consider the word "velociraptor", to look for data payloads with that word you can use `contains` filter `tcp contains "velociraptor"`
+
+`contains` is a simplified version of tcp.payload which is used to search for hex.  
+
+`tshark -r foo.pcap -Y tcp -T fields -e tcp.payload | grep 76656c6f6369726170746f72` is the same as `tcp contains "velociraptor` but with tcp.payload you can spot how many times the word "velociraptor" appears in a packet or the entire pcap with cmdline tools.  
+
   
 TODO: ADD THESE  
 `tcp_hdr.len` Length of the TCP header  

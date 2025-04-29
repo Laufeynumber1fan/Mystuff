@@ -12,9 +12,11 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#less>less</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#man>man</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tcpdump>tcpdump</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tr>tr</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tshark>tshark</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xmllint>xmllint</a></td>
-            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xsltproc>xsltproc</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xsltproc>xsltproc</a></td>  
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xxd>xxd</a></td>
         </tr>
     </tbody>
 </table>
@@ -67,6 +69,12 @@ Combination of filters `tcpdump -r foo.pcap not port 53 and not port 22`
 Specific source IP `tcpdump -r foo.pcap src 192.168.0.1`
 Combination of filter and args `tcpdump -r foo.pcap -ttttnXc 5 port 80`
   
+## tr  
+Translate, replace, delete characters  
+
+Replace tabs into new lines `cat conn.log | zeek-cut id.orig_h id.resp_h | tr '\t' '\n' | sort | uniq | wc -l`  
+Lowercase to uppercase `echo "hello world" | tr 'a-z' 'A-Z'`  
+  
 ### tshark
 Cmdline wireshark, wireshark filters are processed as cmdline arguments.  
 **Only uses [capture filters](https://www.tcpdump.org/manpages/pcap-filter.7.html) for capturing pcaps `-f`. Only uses display filters<sup>refs:[1, ](https://www.wireshark.org/docs/man-pages/wireshark-filter.html)</sup><sup>[2, ](https://www.wireshark.org/docs/dfref/)</sup><sup>[3](https://tshark.dev/setup/)</sup> for reading pcaps `-Y`.**
@@ -78,14 +86,15 @@ Cmdline wireshark, wireshark filters are processed as cmdline arguments.
 `-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2]  
 `-n` Disable name resolution  
 `-x` Display hex & ASCII dump  
-  
+`-E` Display options for headers when using `-T`<sup>[3]</sup>
+
 Advanced help:  
 `-G` Prints every wireshark filter. Use injunction with `egrep "\sPATTERN\." | less -Sx40`.  
 `-G help` more info.  
 `-G protocols`Find abbreviations of protocols.  
   
 Statistics:  
-`-z` Protocol Hierarchy  
+`-z` Protocol Hierarchy
 `-z help | less` Display help
 
 [1a]: `-Y`, `-T fields`, `-e` are the bread and butter, `-Y` finds packets based on the display filter. `-T fields` and `-e` modifies the output to specific fields. See [1b]  
@@ -94,7 +103,8 @@ Statistics:
 [1b]: Display only dns queries `tshark -r foo.pcap -Y "dns.flags.response == 0" -T fields -e dns.qry.name`  
 [2a]: To display packet 100 verbosely `tshark -r foo.pcap -Y frame.number==100 -V`  
 [2b]: To display a specific tcp stream versbosely `tshark -r foo.pcap -Y "tcp.stream eq 0" -V`  
-  
+[3]: Add header fields for custom columns `tshark -r foo.pcap -E header=y -T fields -e ip.src -e ip.dst -e ip.proto -c 5 | less -sX40`  
+
 Filter help `tshark -G | egrep '\sip\.' | less -S -x40`
 <table>
     <tbody align=center>
@@ -119,10 +129,7 @@ Filter help `tshark -G | egrep '\sip\.' | less -S -x40`
     </tbody>
 </table>  
 
-`tshark -r foo.pcap -E header=y -T fields -e ip.src -e ip.dst -e ip.proto -c 5`  
 `tshark -r foo.pcap -T fields -e ip.src -e ip.dst -e tcp.dstport tcp.flags==2 | sort | uniq -c | sort -rn | head`  
-
-  
   
 ### xmllint  
   
@@ -136,5 +143,12 @@ Apply an XSLT stylesheet to an XML to convert it to html `xsltproc foo.xsl foo.x
 Get the XLST stylesheet from wireshark and apply it to an XML<sup>[[1]](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tshark)</sup> `xsltproc /usr/share/wireshark/pdml2html.xsl foo.xml > foo.html`
   
 [1]: Used in converting tshark pdml to xml for viewing pcaps in web browsers.
-
   
+### xxd
+
+Get hex of output
+
+`-p` remove offset
+
+Get hex of "hello world" `echo -n "hello world" | xxd`
+Without format, get hex of "hello world" `echo -n "hello world" | xxd -p`

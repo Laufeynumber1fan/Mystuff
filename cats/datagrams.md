@@ -248,59 +248,77 @@ or like wireshark 16bit
 2: The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
   
 ## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure) [Layer 4]
+
 <table>
     <thead align=center>
-        <th></th>
-        <th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>12</th>
-        <th>13</th>
-        <th>14</th>
-        <th>15</th>
-        <th>16</th>
-        <th colspan=8>17:57</th>
-        <th>*</th>
+        <th colspan=10>0</th>
+        <th colspan=10>1</th>
+        <th colspan=10>2</th>
+        <th colspan=2>3</th>
     </thead>
     <tbody align=center>
         <tr>
-            <th>Fields</th>
-            <td>Source Port</td>
-            <td>Dst. Port</td>
-            <td colspan=4>Sequence No.</td>
-            <td colspan=4>Ack. No.</td>
-            <td>Data Offset<sup>[1]</sup></td>
-            <td colspan=2>Flags<sup>[2]</sup></td>
-            <td colspan=2>Window</td>
-            <td colspan=2>Urg. Pointer</td>
-            <td colspan=8>Options<sup>[3]</sup></td>
-            <td>Data<sup>[4]</sup></td>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
         </tr>
         <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/t/tcp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td>tcp.srcport</td>
-            <td>tcp.dstport</td>
-            <td colspan=4>tcp.seq_raw</td>
-            <td colspan=4>tcp.ack</td>
-            <td>tcp.hdr_len<sup>[1]</sup></td>
-            <td colspan=2>tcp.flags<sup>[2]</sup></td>
-            <td colspan=2>tcp.window_size_value<sup>[5]</sup></td>
-            <td colspan=2>tcp.urgent_pointer</td>
-            <td colspan=8>tcp.options<sup>[2][6]</sup></td>
-            <td>tcp.segment_data<sup>[3][7]</sup></td>
+            <td colspan=16>Source Port<br>tcp.srcport<br>tcp src port</td>
+            <td colspan=16>Dst Port<br>tcp.dstport<br>tcp dst port</td>
         </tr>
+        <tr>
+            <td colspan=32>Sequence Number<br>tcp.seq<sup>tcp.seq_raw</td>
+        </tr>
+        <tr>
+            <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.10">Data Offset</a></td>
+            <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.11">Reserved</a></td>
+            <td colspan=8><a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags">Flags</a><br>tcp.flags<sup>[1]</sup><br><a href=https://www.tcpdump.org/manpages/pcap-filter.7.html#lbAG>tcp-(fin | syn | ack...)</a></td>
+            <td colspan=16>Window<br>tcp.window_size</td>
+        </tr>
+        <tr>
+            <td colspan=16>Checksum<br>tcp.checksum<br></td>
+            <td colspan=16>Urgent Pointer<br>tcp.urgent_pointer</td>
+        </tr>
+        <tr>
+            <td colspan=32>Options<br>tcp.options.*<sup>[2]</sup</td>
+        </tr>
+        <tr>
+            <td colspan=32>Data<br>tcp.len<sup>[3] tcp.payload[4] tcp contains[5]</sup></td>
     </tbody>
 </table>
   
+[1]: `tcp.flags` filter can use the bitmap based on the [iana chart](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags) or you can specify the boolean of the subflag, for ex. `tcp.flags.syn==True`, `tcp.flags.ack`, etc. Check [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html).
+[2]: Refer to the [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html) for all tcp option subflags.
+    
 1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
 2: 
 3: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
