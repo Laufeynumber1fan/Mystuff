@@ -68,6 +68,8 @@ Everything but DNS `tcpdump -r foo.pcap not port 53`
 Combination of filters `tcpdump -r foo.pcap not port 53 and not port 22`
 Specific source IP `tcpdump -r foo.pcap src 192.168.0.1`
 Combination of filter and args `tcpdump -r foo.pcap -ttttnXc 5 port 80`
+
+To combine tcpdump and tshark see [this](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/display_filters.md#combining-dumpshark)
   
 ## tr  
 Translate, replace, delete characters  

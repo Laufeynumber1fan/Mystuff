@@ -6,7 +6,7 @@ Misc docs:
 ## *`tcpdump` + `tshark`*
 
 #### Combining dumpshark
-tshark has limitations with 1 GB pcaps which is when tcpdump plays a role in pcap analysis. tshark will still parse large pcaps but will take 1 min+ after every command.  
+tshark has limitations with 1 GB pcaps which is when tcpdump plays a role in pcap analysis. tshark will still parse large pcaps but may take 1 min+ after every command.  
 
 Consider the following tcpdump command:  
 `tcpdump -r foo.pcapng arp src host 192.168.184.132`
