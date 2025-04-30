@@ -96,8 +96,8 @@ Advanced help:
 `-G protocols`Find abbreviations of protocols.  
   
 Statistics:  
-`-z` Protocol Hierarchy
-`-z help | less` Display help
+`-z` Protocol Hierarchy  
+`-z help | less` Display help  
 
 [1a]: `-Y`, `-T fields`, `-e` are the bread and butter, `-Y` finds packets based on the display filter. `-T fields` and `-e` modifies the output to specific fields. See [1b]  
 

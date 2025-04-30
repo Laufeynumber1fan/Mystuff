@@ -1,7 +1,7 @@
 TODO: Redo datagrams in 32bit intervals like in [RFC793](https://datatracker.ietf.org/doc/html/rfc793#section-3.1)
 or like wireshark 16bit  
 
-## [ARP](https://datatracker.ietf.org/doc/html/rfc6747#section-2.1) [Layer 2] 
+## [ARP](https://datatracker.ietf.org/doc/html/rfc6747#section-2.1) [Layer 2 and 3] 
 <table>
     <thead align=center>
         <tr>
@@ -48,11 +48,11 @@ or like wireshark 16bit
     <tbody align=center>  
         <tr>
             <td colspan=16>Hardware Type<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2>arp.hw.type</a></td>
-            <td colspan=16><a href=https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1>Protocol Type<sup>[1]</sup></a><br>arp.proto.type</td>
+            <td colspan=16>Protocol Type<br><a href=https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1>arp.proto.type<sup>[1]</sup></a></td>
         </tr>
         <tr>
-            <td colspan=8>Hardware Access Length<sup>[2]</sup><br>arp.hw.size</td>
-            <td colspan=8>Protocol Address Length</td>
+            <td colspan=8>Hardware Access Length<sup>[3]</sup><br>arp.hw.size</td>
+            <td colspan=8>Protocol Address Length<br>arp.proto.size</td>
             <td colspan=16>Opcode<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-1>arp.opcode</a></td>
         </tr>
         <tr>
@@ -63,20 +63,21 @@ or like wireshark 16bit
             <td colspan=16>Sender IPv4 Address<br>arp.src.proto_ipv4<br>arp src host</td>
         </tr>
         <tr>
-            <td colspan=16>Sender IPv4 Address cont.<sup>[3]</sup><br>arp.src.proto_ipv4<br>arp src host</td>
+            <td colspan=16>Sender IPv4 Address cont.<sup>[4]</sup><br>arp.src.proto_ipv4<br>arp src host</td>
             <td colspan=16>Target Hardware Address<br>arp.dst.hw<br>arp and ether dst host</td>
         </tr>
         <tr>
             <td colspan=32>Target Hardware Address cont.<br>arp.dst.hw<br>arp and ether dst host</td>
         </tr>
         <tr>
-            <td colspan=32>Target IPv4 Address<sup>[3]</sup><br>arp.dst.proto_ipv4<br>arp dst host</td>
+            <td colspan=32>Target IPv4 Address<sup>[4]</sup><br>arp.dst.proto_ipv4<br>arp dst host</td>
     </tbody>
 </table>
 
-[1]: IPv4 for example is 0x800.  
-[2]: `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
-[2]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
+[1]: IPv4 type for example is 0x800.  
+[2]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
+[3]: A.K.A Hardware Size. `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
+[4]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
 
 ## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
 TODO
