@@ -1,262 +1,15 @@
 TODO: Redo datagrams in 32bit intervals like in [RFC793](https://datatracker.ietf.org/doc/html/rfc793#section-3.1)
 or like wireshark 16bit  
 
-## [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure) [Layer 2] 
+## [ARP](https://datatracker.ietf.org/doc/html/rfc6747#section-2.1) [Layer 2] 
 <table>
     <thead align=center>
-        <th></th>
-        <th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>12</th>
-        <th>13</th>
-        <th>14</th>
-        <th>15</th>
-        <th>16</th>
-        <th>17</th>
-        <th>18</th>
-        <th>19</th>
-        <th>20</th>
-        <th>21</th>
-        <th>22</th>
-        <th>23</th>
-        <th>24</th>
-        <th>25</th>
-        <th>26</th>
-        <th>27</th>
-    </thead>
-    <tbody align=center>
         <tr>
-            <th>Fields</th>
-            <td colspan=2>Hardware type</td>
-            <td colspan=2>Protocol type</td>
-            <td colspan=1>Hardware size<sup>[1]</sup></td>
-            <td colspan=1>Protocol size<sup>[1]</sup></td>
-            <td colspan=2>Opcode (request/reply/etc)</td>
-            <td colspan=6>Sender MAC</td>
-            <td colspan=4>Sender IP</td>
-            <td colspan=6>Target MAC</td>
-            <td colspan=4>Target IP</td>
+            <th colspan=10>0</th>
+            <th colspan=10>1</th>
+            <th colspan=10>2</th>
+            <th colspan=2>3</th>
         </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/a/arp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td colspan=2>arp.hw.type</td>
-            <td colspan=2>arp.proto.type</td>
-            <td colspan=1>arp.hw.size<sup>[1]</sup></td>
-            <td colspan=1>arp.proto.size<sup>[1]</sup></td>
-            <td colspan=2>arp.opcode</td>
-            <td colspan=6>arp.src.hw_mac </td>
-            <td colspan=4>arp.src.proto_ipv4</td>
-            <td colspan=6>arp.dst.hw_mac</td>
-            <td colspan=4>arp.dst.proto_ipv4</td>
-        </tr>
-    </tbody>
-</table>
-  
-1: Hardware and Protocol size is usually only 1 byte long however this can increase depending on the devices and protocols used. In most cases IPv4 over Ethernet traffic will have 28 byte ARP packets, anything more is unideal.
-
-## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
-<table>
-    <thead align=center>
-        <th></th>
-        <th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>*</th>
-        <th>*+1</th>
-        <th>*+2</th>
-        <th>*+3</th>
-        <th>*+4</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <th>Fields</th>
-            <td colspan=2>Transaction ID</td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Questions</td>
-            <td colspan=2>Answer RRs</td>
-            <td colspan=2>Authority RRs</td>
-            <td colspan=2>Additional RRs</td>
-            <td>Domain Name (*)</td>
-            <td colspan=2>Type<sup>[2]</sup></td>
-            <td colspan=2>Class<sup>[3]</sup></td>
-        </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td colspan=2>dns.id</td>
-            <td colspan=2>dns.flags<sup>[2]</sup></td>
-            <td colspan=2>dns.count.queries</td>
-            <td colspan=2>dns.count.answers</td>
-            <td colspan=2>dns.count.auth_rr</td>
-            <td colspan=2>dns.count.add_rr</td>
-            <td>dns.qry<sup></td>
-            <td colspan=2>dns.qry.type<sup>[2]</sup></td>
-            <td colspan=2>dns.qry.class<sup>[3]</sup></td>
-        </tr>
-    </tbody>
-</table>
-  
-1: The rest of the fields are inside a DNS query. The first field is a domain name with a variable size.  
-2: i.e. DNS Record Type  
-3: Defines how this DNS was transported. This is usually `IN` for Internet. Anything else may be anomalous.  
-
-## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
-<table>
-	<thead align=center>
-        <th></th>
-    	<th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>08</th>
-        <th>09</th>
-        <th>10</th>
-        <th>11</th>
-        <th>*</th>
-        <th>*+1</th>
-        <th>*+2</th>
-        <th>*+3</th>
-        <th>*+4</th>
-        <th>*+5</th>
-        <th>*+6</th>
-        <th>*+7</th>
-        <th>*+8</th>
-        <th>*+9</th>
-        <th>*+10</th>
-        <th>*+11</th>
-        <th>*+12</th>
-        <th>*+13</th>
-        <th>*+14</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <th>Fields</th>
-            <td colspan=2>Transaction ID</td>
-            <td colspan=2>Flags</td>
-            <td colspan=2>Questions</td>
-            <td colspan=2>Answer RRs</td>
-            <td colspan=2>Authority RRs</td>
-            <td colspan=2>Additional RRs</td>
-            <td>Domain Name<sup>[1]</sup></td>
-            <td colspan=2>Type<sup>[3]</sup></td>
-            <td colspan=2>Class<sup>[5]</sup></td>
-            <td colspan=4>TTL</td>
-            <td colspan=2>Data Length</td>
-            <td colspan=4>DNS Record</td>
-        </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td colspan=2>dns.id</td>
-            <td colspan=2>dns.flags<sup>[2]</sup></td>
-            <td colspan=2>dns.count.queries</td>
-            <td colspan=2>dns.count.answers</td>
-            <td colspan=2>dns.count.auth_rr</td>
-            <td colspan=2>dns.count.add_rr</td>
-            <td>dns.resp.name<sup>[1]</sup></td>
-            <td colspan=2>dns.resp.type</td>
-            <td colspan=2>dns.resp.class<sup>[5]</sup></td>
-            <td colspan=4>dns.resp.ttl</td>
-            <td colspan=2>dns.resp.len</td>
-            <td colspan=4>dns.*<sup>[4]</sup></td>
-        </tr>
-    </tbody>
-</table>
-  
-1: The rest of the fields are inside a DNS response. The first field of the response `Domain Name` has a variable size  
-2: Each individual flag has a different filter. For ex. `dns.flags.response == True`. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).   
-3: i.e. DNS Record Type  
-4: `dns.aaaa` for AAAA, `dns.a` for A, `dns.cname` for CNAME, etc. See [documentation](https://www.wireshark.org/docs/dfref/d/dns.html).  
-5: Defines how this DNS was transported. This is usually `IN` for Internet. Anything else may be anomalous.  
-  
-## [HTTP](https://en.wikipedia.org/wiki/HTTP) TODO
-<table>
-	<thead align=center>
-        <th></th>
-    	<th>00</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <th>Fields</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/d/dns.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-
-## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
-<table>
-    <thead align=center>
-        <th></th>
-        <th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-        <th>05</th>
-        <th>06</th>
-        <th>07</th>
-        <th>*</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <th>Fields</th>
-            <td>Type<sup>[1]</sup></td>
-            <td>Code</td>
-            <td colspan=2>Checksum</td>
-            <td colspan=2>Identifier</td>
-            <td colspan=2>Sequence No.</td>
-            <td>Data<sup>[2]</sup></td>
-        </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/i/icmp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td>icmp.type<sup>[1]</sup></td>
-            <td>Code</td>
-            <td colspan=2>Checksum</td>
-            <td colspan=2>Identifier</td>
-            <td colspan=2>Sequence No.</td>
-            <td>Data<sup>[2]</sup></td>
-        </tr>
-    </tbody>
-</table>
-  
-1: ICMP type as in ping request `icmp.type == 0`, ping reply `icmp.type == 8`, etc. See [list](https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml)  
-2: The data payload can be used for padding bytes to reach the minimum ICMP packet size of 64 bytes. Additionally, ICMP max size is also 10^256 bytes.
-  
-## [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure) [Layer 4]
-
-<table>
-    <thead align=center>
-        <th colspan=10>0</th>
-        <th colspan=10>1</th>
-        <th colspan=10>2</th>
-        <th colspan=2>3</th>
-    </thead>
-    <tbody align=center>
         <tr>
             <th>00</th>
             <th>01</th>
@@ -291,6 +44,178 @@ or like wireshark 16bit
             <th>30</th>
             <th>31</th>
         </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=16>Hardware Type<br>arp.hw.type</td>
+            <td colspan=16>Protocol Type</td>
+        </tr>
+        <tr>
+            <td colspan=8>Hardware Access Length<sup>[1]</sup><br>arp.hw.size</td>
+            <td colspan=8>Protocol Address Length</td>
+            <td colspan=16>Opcode</td>
+        </tr>
+        <tr>
+            <td colspan=32>Sender Hardware Address</td>
+        </tr>
+        <tr>
+            <td colspan=16>Sender Hardware Address cont.</td>
+            <td colspan=16>Sender IPv4 Address</td>
+        </tr>
+        <tr>
+            <td colspan=16>Sender IPv4 Address cont.<sup>[2]</sup</td>
+            <td colspan=16>Target Hardware Address<br>arp.dst.hw</td>
+        </tr>
+        <tr>
+            <td colspan=32>Target Hardware Address cont.<br>arp.dst.hw</td>
+        </tr>
+        <tr>
+            <td colspan=32>Target IPv4 Address<sup>[2]</sup</td>
+    </tbody>
+</table>
+
+[1]: `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
+[2]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
+
+## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
+TODO
+
+## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
+TODO
+  
+## [HTTP](https://en.wikipedia.org/wiki/HTTP) TODO
+TODO
+
+## [IP](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)
+<table>
+    <thead align=center>
+        <tr>
+            <th colspan=10>0</th>
+            <th colspan=10>1</th>
+            <th colspan=10>2</th>
+            <th colspan=2>3</th>
+        </tr>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
+        </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=4>Version<br><a href="https://www.iana.org/assignments/version-numbers/version-numbers.xhtml#version-numbers-1">ip.version</a><br>ip || ip6</td>
+            <td colspan=4>Internet Header Length<sup>[1]</sup><br>ip.hdr_len</td>
+            <td colspan=8>Differentiated Services<br>ip.dsfield</td>
+            <td colspan=16>Total Length<sup>[1]</sup><br>ip.len</td>
+        </tr>
+        <tr>
+            <td colspan=16>Identification<br>ip.id</td>
+            <td colspan=3>Flags<br>ip.flags<sup>[2]</sup></td>
+            <td colspan=13>Fragment Offset</td>
+        </tr>
+        <tr>
+            <td colspan=8>Time to Live<br>ip.ttl</td>
+            <td colspan=8>Protocol<br>ip.proto<br>proto<sup>[3]</sup></td>
+            <td colspan=16>Header Checksum<br>ip.checksum<sup>[4]</sup>
+        </tr>
+        <tr>
+            <td colspan=32>Source Address<br>ip.src<sup> ip.src_host</sup><br>ip src host</td>
+        </tr>
+        <tr>
+            <td colspan=32>Destination Address<br>ip.dst<sup> ip.dst_host</sup><br>ip dst host</td>
+        </tr>
+        <tr>
+            <td colspan=24><a href=https://www.iana.org/assignments/ip-parameters/ip-parameters.xhtml>Options</a><br>ip.opt.*<sup>[5]</sup></td>
+            <td colspan=8>Padding<sup>[6]</sup></td>
+        </tr>
+    </tbody>
+</table>
+
+[1]: `IHL` specifies the length of IP header in bytes. `Total Length` specifies the length of the IP packet's header + data. A TCP packet for example could be in the IP payload and may have a TCP payload of variable length, `Total Length` determines the end of the TCP packet and start reading the next frame/packet.  
+[2]: There are only 4 flags, see in [wireshark reference](https://www.wireshark.org/docs/dfref/i/ip.html).  
+[3]: Possible protocols: **ether**, link, wlan, **ip**, ip6, arp, **tcp**, **udp**, sctp, iso, isis, rarp, decnet, fddi, tr, ppp and slip.  
+[4]: There are some advanced checksum flags, see in [wireshark reference](https://www.wireshark.org/docs/dfref/i/ip.html).  
+[5]: There are a lot of IP options, refer to other sources ([1](https://www.wireshark.org/docs/dfref/i/ip.html), [2](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)).  
+[6]: Options is variable length so padding is added to make sure the packet is disivisble by 32 bits.
+
+
+## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
+TODO
+  
+## [TCP](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format) [Layer 4]
+<table>
+    <thead align=center>
+        <tr>
+            <th colspan=10>0</th>
+            <th colspan=10>1</th>
+            <th colspan=10>2</th>
+            <th colspan=2>3</th>
+        </tr>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
+        </tr>
+    </thead>
+    <tbody align=center>
         <tr>
             <td colspan=16>Source Port<br>tcp.srcport<br>tcp src port</td>
             <td colspan=16>Dst Port<br>tcp.dstport<br>tcp dst port</td>
@@ -301,7 +226,7 @@ or like wireshark 16bit
         <tr>
             <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.10">Data Offset</a></td>
             <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.11">Reserved</a></td>
-            <td colspan=8><a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags">Flags</a><br>tcp.flags<sup>[1]</sup><br><a href=https://www.tcpdump.org/manpages/pcap-filter.7.html#lbAG>tcp-(fin | syn | ack...)</a></td>
+            <td colspan=8><a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags">Flags</a><br>tcp.flags<sup>[1]</sup><br><a href=https://www.tcpdump.org/manpages/pcap-filter.7.html#lbAG>tcp-(syn || ack...)</a></td>
             <td colspan=16>Window<br>tcp.window_size</td>
         </tr>
         <tr>
@@ -312,46 +237,16 @@ or like wireshark 16bit
             <td colspan=32>Options<br>tcp.options.*<sup>[2]</sup</td>
         </tr>
         <tr>
-            <td colspan=32>Data<br>tcp.len<sup>[3] tcp.payload[4] tcp contains[5]</sup></td>
+            <td colspan=32>Data<br>tcp.len<sup>[3] tcp contains[4] tcp.payload[5]</sup></td>
     </tbody>
 </table>
   
-[1]: `tcp.flags` filter can use the bitmap based on the [iana chart](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags) or you can specify the boolean of the subflag, for ex. `tcp.flags.syn==True`, `tcp.flags.ack`, etc. Check [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html).
-[2]: Refer to the [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html) for all tcp option subflags.
-    
-1: Determines the size of the `Options` field. It only has a max size of the first 4 bits so the last 4 bits must always be unused.  
-2: 
-3: Up to 40 bytes long. Contains TCP config data with up to 10 different types of options. Multiple options can appear inside this field with up to a valid size of 0-40 bytes ([see more](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)).  
-4: Maximum size of a TCP packet is 2^256. The data payload however will never reach this because of Network [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit).  
-5: Wireshark also finds Calculated Window Size `tcp.window_size` and Window Size Scaling Factor `tcp.window_size_scalefactor`. Window * Window Size Scaling Factor = Calculated Window Size ([see more](https://www.lumen.com/help/en-us/network/tcp-windowing.html)).  
-6: There's a lot of wireshark filters for TCP options. See [documentation](https://www.wireshark.org/docs/dfref/t/tcp.html)  
-7: tcp.segment_data == a string of hexdigits. For example: `tcp.segment_data == 05:45:dc:4c:d5:06:25`  
+[1]: `tcp.flags` filter can use the bitmap based on the [iana chart](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags) or you can specify the boolean of the subflag, for ex. `tcp.flags.syn==True`, `tcp.flags.ack`, etc. Check [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html).  
+[2]: Refer to the [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html) for all tcp option subflags.  
+[3]: In most situations, a packet with `tcp.len>0` usually has a data payload.  
+[4]: `tcp contains STRING` searches the entire content of packets but will find the string inside of the data payload. See [other note](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/display_filters.md#tcp-data-payload).  
+[5]: Same-ish with `tcp contains` but compares hexdigits. See [other note](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/display_filters.md#tcp-data-payload).  
   
 ## [TLSv1.2](https://en.wikipedia.org/wiki/Transport_Layer_Security) [Layer 4 and 7]<sup>[1]</sup> TODO
-<table>
-    <thead align=center>
-        <th></th>
-        <th>00</th>
-        <th>01</th>
-        <th>02</th>
-        <th>03</th>
-        <th>04</th>
-    </thead>
-    <tbody align=center>
-        <tr>
-            <td>Fields</td>
-            <td>Content Type</td>
-            <td colspan=2>Version</td>
-            <td colspan=2>Length</td>
-        </tr>
-        <tr>
-            <th><a href=https://www.wireshark.org/docs/dfref/i/icmp.html><img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark_icon.png>Filters</a></th>
-            <td><a href=https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-5>tls.record.content_type</a></td>
-            <td colspan=2>tls.record.version</td>
-            <td colspan=2>tls.record.length</td>
-        </tr>
-    </tbody>
-</table>
-  
-1: TLS operates at different ports as it is used by other protocols. 443 is TLS over HTTPS, 465 is TLS over SMTPS, etc.  
+TODO
  

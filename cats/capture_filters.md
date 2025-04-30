@@ -1,2 +1,2 @@
-# Also known as `tcpdump` filters 
+# Also known as `tcpdump`/BPF filters 
 
