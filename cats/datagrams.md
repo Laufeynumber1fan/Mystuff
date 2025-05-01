@@ -1,7 +1,7 @@
 TODO: Redo datagrams in 32bit intervals like in [RFC793](https://datatracker.ietf.org/doc/html/rfc793#section-3.1)
 or like wireshark 16bit  
 
-## [ARP](https://datatracker.ietf.org/doc/html/rfc6747#section-2.1) [Layer 2 and 3] 
+## [Address Resolution Protocol](https://datatracker.ietf.org/doc/html/rfc6747#section-2.1) <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `arp` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `arp`
 <table>
     <thead align=center>
         <tr>
@@ -79,9 +79,12 @@ or like wireshark 16bit
 [3]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
 [4]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
 
-## [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `dns` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `port 53`
+## [Domain Name System](https://datatracker.ietf.org/doc/html/rfc1035) <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `dns` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `port 53`
 <table>
     <thead align=center>
+        <tr>
+            <th colspan=16><a href=https://datatracker.ietf.org/doc/html/rfc1035#section-3.2.1>DNS Header</a></td>
+        </tr>
         <tr>
             <th>00</th>
             <th>01</th>
@@ -122,10 +125,100 @@ or like wireshark 16bit
         </tr>
     </tbody>
 </table>
-            
 
-## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
-TODO
+[1]: `dns.flags.response==0` for queries, `dns.flags.response==1` for replies. Check [wireshark reference](https://www.wireshark.org/docs/dfref/d/dns.html).
+
+<table>
+    <thead align=center>
+        <tr>
+            <th colspan=16><a href=https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.2>DNS Query</a></td>
+        </tr>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+        </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=16>Question Name<br>dns.id</td>
+        </tr>  
+        <tr>
+            <td colspan=16>Question Type<sup>[1]</sup><br>dns.qry.name</td>
+        </tr>
+        <tr>
+            <td colspan=16>Class Code<sup>[2]</sup><br>dns.qry.class</td>
+        </tr>
+    </tbody>
+</table>
+
+[1]: Types of RR like A, AAAA, MX, CNAME, etc...  
+[2]: Will most usually be `IN` for internet.  
+
+<table>
+    <thead align=center>
+        <tr>
+            <th colspan=16><a href=https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.3>DNS Resource Record (RR)</a></td>
+        </tr>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+        </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=16>Response Name<br>dns.resp.name</td>
+        </tr>
+        <tr>
+            <td colspan=16>Response Type<br>dns.resp.type</td>
+        </tr>
+        <tr>
+            <td colspan=16>Response Class<br>dns.resp.class<sup>[1]</sup></td>
+        </tr>
+        <tr>
+            <td colspan=16>Time To Live<br>dns.resp.ttl</td>
+        </tr>
+        <tr>
+            <td colspan=16>Record Length<br>dns.resp.len</td>
+        </tr>
+        <tr>
+            <td colspan=16>Record Type<br>dns.resp.type</td>
+        </tr>
+        <tr>
+            <td colspan=16>Data<br>dns.*<sup>[2]</sup></td>
+        </tr>
+    </tbody>
+</table>
+
+[1]: Will most usually be `IN` for internet.  
+[2]: The value of the filter will depend on the Record Type. For ex. an A record would be `dns.a==x.x.x.x`, a PTR record would be `dns.ptr.domain_name==google.com`. Check [wireshark reference](https://www.wireshark.org/docs/dfref/d/dns.html).  
   
 ## [HTTP](https://en.wikipedia.org/wiki/HTTP) TODO
 TODO

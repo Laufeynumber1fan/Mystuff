@@ -59,9 +59,12 @@ Cmdline pcap analyser, similar to tshark but lightweight. Has simpler filters.
 
 `-r` Read pcap.  
 `-c [n]` Limit output to n number of packets.  
-`-tttt` Switch timestamps to UTC.  
-`-X` Convert ASCII and hex of payloads.  
-`-n` Don't convert IPs to hostnames.
+`-tttt` Switch time to UTC.  
+`-tt` Switch time to epoch.  
+`--time-stamp-precision` With `-tt` set decimal places.<sup>[1]</sup>  
+`-n` Don't convert IPs to hostnames.  
+`-X` Print ASCII and hex of payloads. 
+`-e` Print link level/ethernet packet header.
 
 Only DNS packets `tcpdump -r foo.pcap port 53`  
 Everything but DNS `tcpdump -r foo.pcap not port 53`  
@@ -85,7 +88,7 @@ Cmdline wireshark, wireshark filters are processed as cmdline arguments.
 `-Y` Apply [display filters](https://www.wireshark.org/docs/dfref/)<sup>[1]</sup>.  
 `-T` Specify different output formats like `json`, `text`, `fields`<sup>[1]</sup>, etc.  
 `-D` Lists all available interfaces to listen for traffic.  
-`-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2]  
+`-V` Display all packet information verbosely. Use injunction with `-Y`<sup>[2]</sup>  
 `-n` Disable name resolution  
 `-x` Display hex & ASCII dump  
 `-E` Display options for headers when using `-T`<sup>[3]</sup>

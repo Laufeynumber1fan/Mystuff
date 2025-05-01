@@ -70,3 +70,4 @@
 [IP Encapsulation](https://www.tutorialspoint.com/ip-in-ip-encapsulation)  
 [LITERALLY a pcap registry](https://tshark.dev/search/pcaptable/)  
 [tcp PSH blog1](https://orhanergun.net/understanding-tcp-psh-packet-flag)  
+[tcpdump dns1](https://www.netmeister.org/blog/dns-tcpdump.html)
