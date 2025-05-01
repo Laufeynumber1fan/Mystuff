@@ -51,8 +51,8 @@ or like wireshark 16bit
             <td colspan=16>Protocol Type<br><a href=https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1>arp.proto.type<sup>[1]</sup></a></td>
         </tr>
         <tr>
-            <td colspan=8>Hardware Access Length<sup>[3]</sup><br>arp.hw.size</td>
-            <td colspan=8>Protocol Address Length<br>arp.proto.size</td>
+            <td colspan=8>Hardware Access Length<br>arp.hw.size<sup>[2]</sup></td>
+            <td colspan=8>Protocol Address Length<br>arp.proto.size<sup>[3]</sup></td>
             <td colspan=16>Opcode<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-1>arp.opcode</a></td>
         </tr>
         <tr>
@@ -75,12 +75,54 @@ or like wireshark 16bit
 </table>
 
 [1]: IPv4 type for example is 0x800.  
-[2]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
-[3]: A.K.A Hardware Size. `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
+[2]: A.K.A Hardware Size. `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
+[3]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
 [4]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
 
 ## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
-TODO
+<table>
+    <thead align=center>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+        </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=16>Transaction ID<br>dns.id</td>
+        </tr>  
+        <tr>
+            <td colspan=16>Flags<br>dns.flags.*<sup>[1]</sup></td>
+        </tr>
+        <tr>
+            <td colspan=16>Questions Count<br>dns.count.queries</td>
+        </tr>
+        <tr>
+            <td colspan=16>Answers Count<br>dns.count.answers</td>
+        </tr>
+        <tr>
+            <td colspan=16>Authority Count<br>dns.count.auth_rr</td>
+        </tr>
+        <tr>
+            <td colspan=16>Additional Count<br>dns.count.add_rr</td>
+        </tr>
+    </tbody>
+</table>
+            
 
 ## [DNS Query Response](https://en.wikipedia.org/wiki/Domain_Name_System#Resource_records) [Layer 7, Port 53] 
 TODO
@@ -91,12 +133,6 @@ TODO
 ## [IP](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)
 <table>
     <thead align=center>
-        <tr>
-            <th colspan=10>0</th>
-            <th colspan=10>1</th>
-            <th colspan=10>2</th>
-            <th colspan=2>3</th>
-        </tr>
         <tr>
             <th>00</th>
             <th>01</th>
@@ -177,12 +213,6 @@ TODO
 <table>
     <thead align=center>
         <tr>
-            <th colspan=10>0</th>
-            <th colspan=10>1</th>
-            <th colspan=10>2</th>
-            <th colspan=2>3</th>
-        </tr>
-        <tr>
             <th>00</th>
             <th>01</th>
             <th>02</th>
@@ -236,7 +266,7 @@ TODO
             <td colspan=16>Urgent Pointer<br>tcp.urgent_pointer</td>
         </tr>
         <tr>
-            <td colspan=32>Options<br>tcp.options.*<sup>[2]</sup</td>
+            <td colspan=32>Options<br>tcp.options.*<sup> [2]</sup</td>
         </tr>
         <tr>
             <td colspan=32>Data<br>tcp.len<sup>[3] tcp contains[4] tcp.payload[5]</sup></td>
