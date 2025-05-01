@@ -79,7 +79,7 @@ or like wireshark 16bit
 [3]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
 [4]: After both IPv4 fields there's actually a field called `Node Identifier` for Sender and Target. This is used in a proposed protocol called [Identifier-Locator Network Protocol](https://en.wikipedia.org/wiki/Identifier-Locator_Network_Protocol).
 
-## [DNS Query](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) [Layer 7, Port 53] 
+## [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System#Question_section) <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `dns` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `port 53`
 <table>
     <thead align=center>
         <tr>
