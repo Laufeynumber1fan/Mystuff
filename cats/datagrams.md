@@ -47,33 +47,35 @@ or like wireshark 16bit
     </thead>
     <tbody align=center>  
         <tr>
-            <td colspan=16>Hardware Type<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2>arp.hw.type</a></td>
-            <td colspan=16>Protocol Type<br><a href=https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1>arp.proto.type<sup>[1]</sup></a></td>
+            <td colspan=16>Hardware Type<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2>arp.hw.type</a><br>.hwtype<sup>⟩𝑆</sup></td>
+            <td colspan=16>Protocol Type<br><a href=https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1>arp.proto.type<sup>[1]</sup></a><br>.pytype<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=8>Hardware Access Length<br>arp.hw.size<sup>[2]</sup></td>
-            <td colspan=8>Protocol Address Length<br>arp.proto.size<sup>[3]</sup></td>
-            <td colspan=16>Opcode<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-1>arp.opcode</a></td>
+            <td colspan=8>Hardware Access Length<br>arp.hw.size<sup>[2]</sup><br>.hwlen<sup>⟩𝑆</sup></td>
+            <td colspan=8>Protocol Address Length<br>arp.proto.size<sup>[3]</sup><br>.plen<sup>⟩𝑆</sup></td>
+            <td colspan=16>Opcode<br><a href=https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-1>arp.opcode</a><br>.plen<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=32>Sender Hardware Address<br>arp.src.hw<br>arp and ether src host</td>
+            <td colspan=32>Sender Hardware Address<br>arp.src.hw<br>arp and ether src host<br>.hwsrc<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=16>Sender Hardware Address cont.<br>arp.src.hw<br>arp and ether src host</td>
-            <td colspan=16>Sender IPv4 Address<br>arp.src.proto_ipv4<br>arp src host</td>
+            <td colspan=16>Sender Hardware Address cont.<br>arp.src.hw<br>arp and ether src host<br>.hwsrc<sup>⟩𝑆</sup></td>
+            <td colspan=16>Sender IPv4 Address<br>arp.src.proto_ipv4<br>arp src host<br>.psrc<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=16>Sender IPv4 Address cont.<sup>[4]</sup><br>arp.src.proto_ipv4<br>arp src host</td>
-            <td colspan=16>Target Hardware Address<br>arp.dst.hw<br>arp and ether dst host</td>
+            <td colspan=16>Sender IPv4 Address cont.<sup>[4]</sup><br>arp.src.proto_ipv4<br>arp src host<br>.psrc<sup>⟩𝑆</sup></td>
+            <td colspan=16>Target Hardware Address<br>arp.dst.hw<br>arp and ether dst host<br>.hwdst<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=32>Target Hardware Address cont.<br>arp.dst.hw<br>arp and ether dst host</td>
+            <td colspan=32>Target Hardware Address cont.<br>arp.dst.hw<br>arp and ether dst host<br>.hwdst<sup>⟩𝑆</sup></td>
         </tr>
         <tr>
-            <td colspan=32>Target IPv4 Address<sup>[4]</sup><br>arp.dst.proto_ipv4<br>arp dst host</td>
+            <td colspan=32>Target IPv4 Address<sup>[4]</sup><br>arp.dst.proto_ipv4<br>arp dst host<br>.pdst<sup>⟩𝑆</sup></td>
     </tbody>
 </table>
 
+⟩𝑆 = Scapy header field.  
+  
 [1]: IPv4 type for example is 0x800.  
 [2]: A.K.A Hardware Size. `Sender` and `Target Hardware Address` has a variable size depending on the network technology so `Hardware Access Length` specifies the size, For ex. Ethernet MAC Addresses is `arp.hw.size==6`  
 [3]: A.K.A. Protocol Size. IPv4 addresses for example is 4.  
@@ -223,7 +225,7 @@ or like wireshark 16bit
 ## [HTTP](https://en.wikipedia.org/wiki/HTTP) TODO
 TODO
 
-## [IP](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)
+## [Internet Protocol](https://datatracker.ietf.org/doc/html/rfc791#section-3.1) <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `ip` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `ip`
 <table>
     <thead align=center>
         <tr>
@@ -302,7 +304,7 @@ TODO
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
 TODO
   
-## [TCP](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format) [Layer 4]
+## [Transmission Control Protocol](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format) [Layer 4] <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `tcp` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `tcp`
 <table>
     <thead align=center>
         <tr>

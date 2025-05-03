@@ -10,7 +10,9 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#gunzip>gunzip</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#less>less</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ls>ls</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#man>man</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tar>tar</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tcpdump>tcpdump</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tr>tr</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tshark>tshark</a></td>
@@ -50,9 +52,43 @@ For example, the command `tshark -z help` displays the help command for `-z` but
 Do `2>&1` to change the console `std` to `out` and not `err`.  
 `tshark -z help 2>&1 | less`
 
+### ls
+List files in directory.
+
+List  
+`-a` List all files, including hidden files and . & .. dirs.  
+`-A` Same as `-a` but without . and .. dirs.  
+`-1` List filenames one by one but don't add additional info.  
+`-R` List subdirs recursively.  
+  
+Sort  
+`-r` Reverse sort.  
+`-t` Time sort  
+
+  
+Size  
+`-S` Sort by file size.  
+`-s` Include size of each file but not human readable.  
+`-h` with `-s`, make it human readable sizes.  
+
+**<u>Examples</u>**
+find files without `find` `ls -R 2> /dev/null | grep "
 
 ### man
   
+### tar
+Archive tool that compresses or decompresses folders. Makes tarballs.  
+  
+`-c` Create tar archive  
+`-z` Apply gunzip while compressing or decompressing. Use for `.gz` extensions  
+`-v` Verbose  
+`-f` File/Folder name  
+`-x` Decompress archives  
+  
+Examples:
+Make tar.gz `tar -czvf [tar.gz name] [folder/file you want to tar]`  
+Extract tar.gz `tar -xzvf foo.tar.gz`  
+
 ### tcpdump  
 Cmdline pcap analyser, similar to tshark but lightweight. Has simpler filters.  
 **Uses [capture filters](https://www.tcpdump.org/manpages/pcap-filter.7.html) for reading and capturing pcaps**  
