@@ -20,15 +20,12 @@ pkt
 
 The above code initialises a barebones arp packet.
 
-To capture this packet into a pcap, first I make sure to isolate my VM so that other packets won't be included into the pcap (you can also just capture with a filter).  
-To "isolate", remove DNS nameservers in `/etc/resolv.conf` and turn off DHCP by NetworkManager with `systemctl disable NetworkManager`. <sub>(This doesn't guarantee any other services from sending packets.)</sub>
-
-I then use `tcpdump` to start a capture.  
+Let's then use `tcpdump` to start a capture.  
 `tcpdump -i eth0 -w test.pcap` <sub>(`-i` is the interface name. Use `ip a` to get your interface name.)</sub>   
 
 After a couple seconds `Ctrl + C` and an ARP packet asking for 172.16.20.1 will be written into `test.pcap`. That right there is a custom packet, pretty cool.  
 
-Don't forget that `scapy` is literally a python package. You can use if statements, loops, and the whole she bang. Consider making an 8 GB pcap:
+Don't forget that `scapy` is literally a python package. You can use if statements, loops, and the whole she bang. Consider making a trash packet with just 15kb worth of garbage:
 
 ```
 # This will a send 15KB packet. Or rather, it's supposed **to**
@@ -39,93 +36,81 @@ pkt = Raw(b)
 send(pkt)
 ```
 
-My goal is to make an 8GB pcap, I want to send large packets through the wire because I don't want to sit here sending small byte-size (ha) packets for 4 hours until I get a 8000000000 byte pcap. So if you haven't noticed yet, scapy returns an error when sending the 15KB packet. Why? There's something called [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit), a network interface will drop sending or receiving packets that exceeds its MTU setting (by default 1500 bytes).
+Our goal is to make a very big packet, but if you haven't noticed yet, **scapy returns an error** when sending the packet. Why? There's something called [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit), a network interface will drop sending or receiving packets that exceeds its MTU setting (by default 1500 bytes).
 
-To set an interface's MTU I refer to this [blog](https://www.baeldung.com/linux/maximum-transmission-unit-change-size)  
-I did this at a different terminal `sudo ifconfig eth0 mtu 15000 up`  
+To set an interface's MTU, refer to this [blog](https://www.baeldung.com/linux/maximum-transmission-unit-change-size)  
+Do this at a different terminal `sudo ifconfig eth0 mtu 15000 up`  
   
 Now switch back to the scapy terminal and retry `send(pkt)`  
 If you get a good return message, make another terminal and run a pcap capture `tcpdump -i eth0 -w test.pcap`  
 Then go back to scapy and send again `send(pkt)`  
 
-Now cancel tcpdump, look at it in wireshark or tshark or whatever, I'm not gonna hold your hand on that, but the gist of the process is that we started with a fabricated ARP packet and now with a little bit of tweaking a network interface we can write a highly irregular packet into a pcap file and view it.
+Cancel tcpdump and look at it in wireshark or tshark or whatever, I'm not gonna hold your hand on that, but the gist of the process is that we started with a fabricated ARP packet and now with a little bit of tweaking a network interface we can write a highly irregular packet into a pcap file and view it.
 
-while True:
-    send(pkt)
+Let's learn to make a more advanced custom packet. Making an http connection between a client and server, the beauty of scapy is that we can simulate fake traffic between two machines by just editing the source & dest IPs and MACs. I'm not gonna go into too much scrutiny with making "proper" packets because I am making fake traffic just for myself, however there are scenarious such as MITM attacks using scapy where disguising custom packets into geniune traffic come into play.  
 
+For now let's just pay attention into making a packet that's readable in wireshark instead of trying to fool an IDS.  
 
-
-Now on a different terminal tab do `ls -sh packets.txt` to monitor the size of packets.txt, the file size right now isn't going to be the pcap size because the data inside are just string representations of bytes, not actual packets.   
-
-TODO: to readlines the packets.txt, you do eval() on each string and then pickle.loads()
-When youre capturing all the packets in packets.txt, you then make a tcp packet with osaka as an image
-
-##########
-pkt = Ether()/ARP()
-pkt[ARP].hwsrc = "00:11:22:33:44:55"
-pkt[ARP].pdst = "0.0.0.0"
-pkt[ARP].dst = "ff:ff:ff:ff:ff:ff"
-pkt
-# <Ether  type=ARP |<ARP  hwsrc=00:11:22:33:44:55 pdst=172.16.20.1 |>>
-a,b,c,d=0,0,0,0
-
-while True:
-    sendp(pkt)
-    d += 1
-    if d==255:
-        c+=1
-        d=0
-        if c==255:
-            b+=1
-            c=0
-            if b==255:
-                a+=1
-                b=0
-                if a==255 and d==255:
-                    a,b,c,d=0,0,0,0
-    pkt[ARP].pdst = f"{a}.{b}.{c}.{d}"
-
-######
-load_layer("http")
-
-with open('00 0c 29 d5 ca 2d.jpg', 'rb') as f:
-    b = f.read()
+```
+# Layer 3
 client = "10.0.0.2"
 server = "10.0.0.3"
+
+# Layer 4
 client_p = 12345
 server_p = 80
-
-http_post = (
-    f"POST /upload.jpeg HTTP/1.1\r\n"
-    f"Host: {server}\r\n"
-    f"Content-Type: image/jpeg\r\n"
-    f"Content-Length: {len(b)}\r\n"
-    f"\r\n").encode()
-
-http_post += b
-
-http_response = (
-    "HTTP/1.1 200 OK\r\n"
-    "Content-Type: image/jpeg\r\n"
-    f"Content-Length: {len(b)}\r\n"
-    f"\r\n").encode()
-
-http_response += b
-
 seq_client = 1000
 seq_server = 2000
 ack_from_server = seq_client + len(http_post)
 
-post_pkt = IP(src=client, dst=server)/TCP(sport=client_p, dport=server_p, flags="PA", seq=seq_client, ack=seq_server)/HTTP()/Raw(load=http_post)
-response_pkt = IP(src=server, dst=client)/TCP(sport=server_p, dport=client_p, flags="PA", seq=seq_server, ack=ack_from_server)/HTTP()/Raw(load=http_response)
-
-send(post_pkt)
-send(response_pkt)
-
-#######
-with open('rawbytes.txt', 'rb') as f:
+# Layer 7, payload data
+with open('image.jpeg', 'rb') as f:
     b = f.read()
+load_layer("http")
+```
 
-pkt = Raw(b)
-while True:
-    send(pkt)
+Now let's build a barebones HTTP get and reply.
+
+```
+http_get = (
+    f"GET /upload.jpeg HTTP/1.1\r\n"
+    f"Host: {server}\r\n"
+    f"Content-Type: image/jpeg\r\n"
+    f"\r\n").encode()
+
+http_reply = (
+    f"HTTP/1.1 200 OK\r\n"
+    f"Content-Type: image/jpeg\r\n"
+    f"Content-Length: {len(b)}\r\n"
+    f"\r\n").encode()
+
+# Add image bytes into the reply
+http_reply += b
+```
+
+Now normally you would need a machine to be an http client and you need another to be an http server, but if you go down a level of abstraction, all those HTTP clients and server applications' main purpose is to send something like these 2 http headers down a wire.
+
+Time to use scapy's framework to package these fields into actual packets for transit.
+
+```
+get_pkt = IP(src=client, dst=server)/TCP(sport=client_p, dport=server_p, flags="A", seq=seq_client, ack=seq_server)/HTTP()/Raw(load=http_get)
+reply_pkt = IP(src=server, dst=client)/TCP(sport=server_p, dport=client_p, flags="A", seq=seq_server, ack=ack_from_server)/HTTP()/Raw(load=http_reply)
+```
+
+Then test for errors for send.
+```
+send(get_pkt)
+send(reply_pkt)
+```
+
+The reason how wireshark or any other analysis tool will recognise that `reply_pkt` is responding to `get_pkt` is because of the IP in layer 3, then the matching ports in layer 4, and then the sequence numbers in TCP. All this information work in tandem which we added into our custom packets.  
+
+If the packets were able to be sent, get tcpdump again on another terminal to capture.  
+`tcpdump -i eth0 http_test.pcap`
+
+To see if the image was correctly use wireshark. `File` > `Export Objects` > `HTTP`
+  
+And that's that. This is not essentially a tutorial, but more like an introduction to the scope of customisable packets. For further reading into scapy I recommend these more in-depth (and more reputable) tutorials.
+  
+[How to Inject Code into HTTP Responses in the Network in Python](https://thepythoncode.com/article/injecting-code-to-html-in-a-network-scapy-python?utm_source=chatgpt.com)  
+[How to Build an ARP Spoofer in Python using Scapy](https://thepythoncode.com/article/building-arp-spoofer-using-scapy)  
