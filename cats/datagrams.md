@@ -277,7 +277,7 @@ TODO
         </tr>
         <tr>
             <td colspan=8>Time to Live<br>ip.ttl</td>
-            <td colspan=8>Protocol<br>ip.proto<br>proto<sup>[3]</sup></td>
+            <td colspan=8>Protocol<br><a href=https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml#protocol-numbers-1>ip.proto</a><br>proto<sup>[3]</sup></td>
             <td colspan=16>Header Checksum<br>ip.checksum<sup>[4]</sup>
         </tr>
         <tr>
@@ -302,7 +302,58 @@ TODO
 
 
 ## [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Datagram_structure) [Layer 3]
-TODO
+<table>
+    <thead align=center>
+        <tr>
+            <th colspan=32>ICMP Header</th>
+        </tr>
+        <tr>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <th>05</th>
+            <th>06</th>
+            <th>07</th>
+            <th>08</th>
+            <th>09</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
+        </tr>
+    </thead>
+    <tbody align=center>  
+        <tr>
+            <td colspan=8><a href="https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml#icmp-parameters-types">Type<sup>[1]</sup></a><br>icmp.type</td>
+            <td colspan=8><a href="https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml#icmp-parameters-codes">Code<sup>[1]</sup><br>icmp.code</a></td>
+            <td colspan=16>Checksum<icmp.checksum></td>
+        </tr>
+        <tr>
+            <td colspan=32>Data</td>
+    </tbody>
+</table>
+
+[1]: Type defines ICMP messages like `Echo Reply` and `Destination Unreachable`. Code then defines the status code of the ICMP Type. For ex. `Type 3` then `Code 1` means `Host Unreachable`.  
   
 ## [Transmission Control Protocol](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format) [Layer 4] <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/wireshark.ico> `tcp` <img src=https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/tcpdump.ico> `tcp`
 <table>
@@ -353,7 +404,7 @@ TODO
         <tr>
             <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.10">Data Offset</a></td>
             <td colspan=4><a href="https://datatracker.ietf.org/doc/html/rfc9293#section-3.1-6.11">Reserved</a></td>
-            <td colspan=8><a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags">Flags</a><br>tcp.flags<sup>[1]</sup><br><a href=https://www.tcpdump.org/manpages/pcap-filter.7.html#lbAG>tcp-(syn || ack...)</a></td>
+            <td colspan=8><a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags">Flags</a><br><a href=https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags>tcp.flags</a><sup>[1]</sup><br><a href=https://www.tcpdump.org/manpages/pcap-filter.7.html#lbAG>tcp-(syn || ack...)</a></td>
             <td colspan=16>Window<br>tcp.window_size</td>
         </tr>
         <tr>
@@ -368,7 +419,7 @@ TODO
     </tbody>
 </table>
   
-[1]: `tcp.flags` filter can use the bitmap based on the [iana chart](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags) or you can specify the boolean of the subflag, for ex. `tcp.flags.syn==True`, `tcp.flags.ack`, etc. Check [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html).  
+[1]: `tcp.flags` filter can use the bit offset values based on the [iana chart](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml#tcp-header-flags) OR it is the 8 bit values starting with 1 (FIN), 2 (SYN), 4 (RST), 8 (PSH), etc... You can also just specify the boolean of the subflag, for ex. `tcp.flags.syn==True`, `tcp.flags.ack`, etc. Check [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html).  
 [2]: Refer to the [wireshark reference](https://www.wireshark.org/docs/dfref/t/tcp.html) for all tcp option subflags.  
 [3]: In most situations, a packet with `tcp.len>0` usually has a data payload.  
 [4]: `tcp contains STRING` searches the entire content of packets but will find the string inside of the data payload. See [other note](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/display_filters.md#tcp-data-payload).  

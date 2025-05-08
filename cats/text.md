@@ -83,4 +83,11 @@
 [OSINT blog1](https://nixintel.info/osint/quiztime-how-to-clean-pictures-for-better-search-results/)  
 [Wifi network maps and database](https://www.wigle.net)  
 [Image detail remover for reverse image search](https://cleanup.pictures)  
-[OSINT links](https://www.protopage.com/cdiosint#OSINT_Bookmarks)
+[OSINT links](https://www.protopage.com/cdiosint#OSINT_Bookmarks)  
+[Fox-it cybersec blogs](https://blog.fox-it.com)
+[Exabeam kill chain](https://www.exabeam.com/explainers/information-security/cyber-kill-chain-understanding-and-mitigating-advanced-threats/)  
+[Unified kill chain](https://www.unifiedkillchain.com/assets/The-Unified-Kill-Chain.pdf)  
+[MITRE kill chain](https://attack.mitre.org)  
+[Lockheed Martin kill chain](https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html)  
+[Chosen Plaintext Attack wiki](https://en.wikipedia.org/wiki/Chosen-plaintext_attack)  
+

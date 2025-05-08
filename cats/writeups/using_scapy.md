@@ -114,3 +114,5 @@ And that's that. This is not essentially a tutorial, but more like an introducti
   
 [How to Inject Code into HTTP Responses in the Network in Python](https://thepythoncode.com/article/injecting-code-to-html-in-a-network-scapy-python?utm_source=chatgpt.com)  
 [How to Build an ARP Spoofer in Python using Scapy](https://thepythoncode.com/article/building-arp-spoofer-using-scapy)  
+
+And this is my finished product from tweaking with scapy: [kingston.tar.gz](https://github.com/Laufeynumber1fan/filedrops/blob/main/kingston.tar.gz)
