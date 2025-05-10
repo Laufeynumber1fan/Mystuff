@@ -90,4 +90,6 @@
 [MITRE kill chain](https://attack.mitre.org)  
 [Lockheed Martin kill chain](https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html)  
 [Chosen Plaintext Attack wiki](https://en.wikipedia.org/wiki/Chosen-plaintext_attack)  
-
+[Incidents of Compromise blog1](https://www.splunk.com/en_us/blog/learn/ioc-indicators-of-compromise.html)  
+[Weird CISA software for ransomware assessment](https://github.com/cisagov/cset/releases/tag/v10.3.0.0)  
+[IC3 PSAs](https://www.ic3.gov/PSA)

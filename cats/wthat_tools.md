@@ -4,6 +4,16 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
     <tbody align=center>
         <tr>
             <th>1</th>
+            <th colspan=26>Checksum</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#cksum>cksum</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#md5sum>md5sum</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sha256sum>sha256sum</a></td>
+        </tr>
+        <tr>
+            <th>1</th>
             <th colspan=26>Disk Partitioning & Info</th>
         </tr>
         <tr>
@@ -50,6 +60,25 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
         </tr>
         <tr>
             <th>4</th>
+            <th colspan=26>Network Configuration</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ip>ip</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#route>route</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ufw>ufw</a></td>
+        </tr>
+        <tr>
+            <th>5</th>
+            <th colspan=26>Network Scanning</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#nmap>nmap</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ping>ping</a></td>
+        </tr>
+        <tr>
+            <th>6</th>
             <th colspan=26>Package Managers</th>
         </tr>
         <tr>
@@ -58,7 +87,7 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#apt>pacstrap</a></td>
         </tr>
         <tr>
-            <th>5</th>
+            <th>7</th>
             <th colspan=26>String Manipulation</th>
         </tr>
         <tr>
@@ -76,10 +105,16 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
 ## apt TODO
 
 ## capinfos TODO
-Print information and properties of pcaps.
+Print information and properties of pcaps. Detects out of order packets.  
 
-`-A` All information (does this with no given arguments)
+`-c` Display packet count.  
+`-A` All information (does this with no given arguments).  
 
+## cksum
+Get checksums of file. You can choose a hashing algorithm to apply. For MD5 checksums see [md5sum](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#md5sum). MD5 is usually done for file integrity, SHA256 and others are done for password storage.
+
+With no options, it does 32 bit CRC by default `cksum foo.exe`  
+Do SHA256 hash (you can also do this with <a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sha256sum>sha256sum</a>)`cksum -a sha256 foo.exe`  
 
 ## date
 Print system date and time.
@@ -99,6 +134,11 @@ Interactive drive partitioning.
 Unzip `.gz` files, but if you want to unzip `.tar.gz`, use `tar`.
 
 `gunzip foo.gz`
+
+## ip TODO
+Show and change ip configuration.  
+
+`-a` Display all ip configuration  
 
 ## less
 Used for displaying long cmdline outputs  
@@ -145,6 +185,12 @@ Size
 
 ## man TODO
 
+## md5sum 
+Get MD5 hash of a file.
+
+Get hash of file `md5sum foo.exe`
+Get hash of files in the current directory `md5sum *`
+
 ## mkswap
 Make a drive into a swap partition. Used in addition to [swapon](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#swapon).
 
@@ -152,10 +198,18 @@ Make a drive into a swap partition. Used in addition to [swapon](https://github.
 Mount partitioned disks  
 `--mkdir` Generate a named directory for the drive  
 
+## nmap TODO
+Port scanner.
+
+`-p` Scan one or a range of ports or all ports. Ex. `-p 1-1000`,  for all ports `-p-`  
+
 ## pacstrap TODO
+Package manager for ArchLinux distros.  
 
 ## parted
 Shell-based drive partitioning
+
+## ping TODO
 
 ## rm
 Remove files, directories, etc...  
@@ -172,7 +226,16 @@ Remove files, directories, etc...
 `rm ../foo.txt` Delete file in parent directory  
 `rm -fvr foobar` Force delete everything inside foobar  
   
+## route TODO
+Show and change routing table
+
 ## sed TODO
+
+## sha256sum  
+Get sha256 hash.
+
+Get hash of a file `sha256sum foo.txt`  
+Get hash of files in the current directory `sha256sum *`  
 
 ## sfdisk
 Non-interactive drive partitioning (like fdisk).
@@ -256,7 +319,8 @@ Cmdline wireshark, wireshark filters are processed as cmdline arguments.
 `-q` Be more quiet, ideally use with `-z`.  
 `-x` Display hex & ASCII dump.  
 `-E` Display options for headers when using `-T`<sup>[3]</sup>.  
-
+`--export-objects` Export files in tshark, makes a separate directory.<sup>[5]</sup>  
+  
 Advanced help:  
 `-G` Prints every wireshark filter. Use injunction with `egrep "\sPATTERN\." | less -Sx40`.  
 `-G help` more info.  
@@ -274,17 +338,28 @@ Statistics:
 [2a]: To display packet 100 verbosely `tshark -r foo.pcap -Y frame.number==100 -V`  
 [2b]: To display a specific tcp stream versbosely `tshark -r foo.pcap -Y "tcp.stream eq 0" -V`  
 [3]: Add header fields for custom columns `tshark -r foo.pcap -E header=y -T fields -e ip.src -e ip.dst -e ip.proto -c 5 | less -sX40`  
+[5]: Export http files, exports it to a dir called files `tshark -r foo.pcap --export-objects http,files`  
 
-Follow tcp stream 0 data payload `tshark -r intro_to_pcap.pcap -qz follow,tcp,ascii,0`  
 Filter for TCP SYN packets then show src and dst ip with dst ports of the connection then sort for most connections `tshark -r foo.pcap -Y tcp.flags==2 -T fields -e ip.src -e ip.dst -e tcp.dstport | sort | uniq -c | sort -n`  
+Filter http content-length which is useful for seeing payload sizes `tshark -r foo.pcap -Y http -T fields -e frame.number -e http.content_length`  
 View filter documentation in terminal `tshark -G | egrep '\sip\.' | less -S -x40`  
-  
+Find tcp stream number of tcp data payloads `tshark -r foo.pcap -Y tcp.completeness==7 -T fields -e http.request.uri -e tcp.stream | less`
+Follow tcp stream 0 data payload `tshark -r foo.pcap -qz follow,tcp,ascii,0`  
+
+## ufw  
+Linux netfilter firewall. Installed by default on ubuntu.
+
+`ufw disable` Turn off and disabled on startup.
+`ufw enable` Turn on.
+
 ## uname  
 Print OS info
 
 `-a` Print all info  
 
 ## uniq TODO  
+Filter ADJACENT matching lines and merges those repeating lines into 1. It's not magic, it's a compression algorithm.  
+`-c` Adds a column for the number of occurrances of the value
 
 ## whereis  
 Print path locations of command aliases
