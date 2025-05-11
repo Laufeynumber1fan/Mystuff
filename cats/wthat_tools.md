@@ -38,7 +38,9 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#less>less</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ls>ls</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#man>man</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#nano>nano</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#rm>rm</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#rmdir>rmdir</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sort>sort</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tar>tar</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#uname>uname</a></td>
@@ -52,6 +54,7 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
         <tr>
             <td></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#capinfos>capinfos</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#jq>jq</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tcpdump>tcpdump</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tshark>tshark</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xmllint>xmllint</a></td>
@@ -111,7 +114,7 @@ Print information and properties of pcaps. Detects out of order packets.
 `-A` All information (does this with no given arguments).  
 
 ## cksum
-Get checksums of file. You can choose a hashing algorithm to apply. For MD5 checksums see [md5sum](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#md5sum). MD5 is usually done for file integrity, SHA256 and others are done for password storage.
+Get checksums of file. You can choose a hashing algorithm to apply. For MD5 checksums see [md5sum](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#md5sum). MD5 is usually done for file integrity, SHA256 is used for password storage and digital certificates.
 
 With no options, it does 32 bit CRC by default `cksum foo.exe`  
 Do SHA256 hash (you can also do this with <a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sha256sum>sha256sum</a>)`cksum -a sha256 foo.exe`  
@@ -139,6 +142,8 @@ Unzip `.gz` files, but if you want to unzip `.tar.gz`, use `tar`.
 Show and change ip configuration.  
 
 `-a` Display all ip configuration  
+
+## jq TODO
 
 ## less
 Used for displaying long cmdline outputs  
@@ -198,6 +203,9 @@ Make a drive into a swap partition. Used in addition to [swapon](https://github.
 Mount partitioned disks  
 `--mkdir` Generate a named directory for the drive  
 
+## nano TODO
+Text editor (not installed by default on bash, however [vi](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#vi) is!)
+
 ## nmap TODO
 Port scanner.
 
@@ -218,13 +226,16 @@ Remove files, directories, etc...
 `-f` Force file deletion, no confirmation or logging
 `-i` Prompt yes/no for every file  
 `-I` Prompt yes/no for every 3 files  
-`-r` Recursively delete files in dir and then delete the dir itself  
+`-r` Recursively delete files in dir and then delete the dir itself (you can also remove folders with [rmdir](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#rmdir)) 
 `-v` Verbose  
 
 **<u>Examples</u>**  
 `rm foo.txt` Delete file  
 `rm ../foo.txt` Delete file in parent directory  
 `rm -fvr foobar` Force delete everything inside foobar  
+
+## rmdir TODO
+Remove folder(s)
   
 ## route TODO
 Show and change routing table
@@ -345,6 +356,9 @@ Filter http content-length which is useful for seeing payload sizes `tshark -r f
 View filter documentation in terminal `tshark -G | egrep '\sip\.' | less -S -x40`  
 Find tcp stream number of tcp data payloads `tshark -r foo.pcap -Y tcp.completeness==7 -T fields -e http.request.uri -e tcp.stream | less`
 Follow tcp stream 0 data payload `tshark -r foo.pcap -qz follow,tcp,ascii,0`  
+
+## vi
+Text editor, but installed default on bash!
 
 ## ufw  
 Linux netfilter firewall. Installed by default on ubuntu.
