@@ -1,9 +1,16 @@
-# WHAT THE HELL ARE THESE TOOLS<img src="https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/angry.png">  
-TODO: properly label these tools. Also specify if linux and windwows somehow
+# What the hell are these (linux) tools<img src="https://github.com/Laufeynumber1fan/Mystuff/blob/main/src/images/cats/angry.png">  
 <table>
     <tbody align=center>
         <tr>
             <th>1</th>
+            <th colspan=26>Commands that make you want to unalive yourself</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#gpg>gpg</a></td>
+        </tr>
+        <tr>
+            <th>3</th>
             <th colspan=26>Checksum</th>
         </tr>
         <tr>
@@ -13,7 +20,7 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sha256sum>sha256sum</a></td>
         </tr>
         <tr>
-            <th>1</th>
+            <th>7</th>
             <th colspan=26>Disk Partitioning & Info</th>
         </tr>
         <tr>
@@ -27,7 +34,7 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sfdisk>sfdisk</a></td>
         </tr>
         <tr>
-            <th>2</th>
+            <th>15</th>
             <th colspan=26>Linux Literacy</th>
         </tr>
         <tr>
@@ -42,13 +49,17 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#rm>rm</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#rmdir>rmdir</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sort>sort</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#stty>stty</a></td>
+        </tr>
+        <tr>
+            <td></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#tar>tar</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#uname>uname</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#uniq>uniq</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#whereis>whereis</a></td>
         </tr>
         <tr>
-            <th>3</th>
+            <th>8</th>
             <th colspan=26>Network Analysis</th>
         </tr>
         <tr>
@@ -60,9 +71,10 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xmllint>xmllint</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xsltproc>xsltproc</a></td>  
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#xxd>xxd</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#zeek>zeek</a></td>
         </tr>
         <tr>
-            <th>4</th>
+            <th>3</th>
             <th colspan=26>Network Configuration</th>
         </tr>
         <tr>
@@ -72,7 +84,7 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ufw>ufw</a></td>
         </tr>
         <tr>
-            <th>5</th>
+            <th>2</th>
             <th colspan=26>Network Scanning</th>
         </tr>
         <tr>
@@ -81,16 +93,17 @@ TODO: properly label these tools. Also specify if linux and windwows somehow
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#ping>ping</a></td>
         </tr>
         <tr>
-            <th>6</th>
+            <th>2</th>
             <th colspan=26>Package Managers</th>
         </tr>
         <tr>
             <td></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#apt>apt</a></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#gpg>gpg</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#apt>pacstrap</a></td>
         </tr>
         <tr>
-            <th>7</th>
+            <th>3</th>
             <th colspan=26>String Manipulation</th>
         </tr>
         <tr>
@@ -130,6 +143,12 @@ Print file system usage.
 
 ## fdisk
 Interactive drive partitioning.
+
+## gpg  
+Keyring manager, prominently used in apt for signing packages and preventing malicious repos from installing packages. Kinda like TLS in a way.
+
+https://askubuntu.com/questions/1286545/what-commands-exactly-should-replace-the-deprecated-apt-key/1307181#1307181
+
 
 ## grep TODO
 
@@ -271,6 +290,11 @@ Use this to sort the names on the 2nd column `sort -t: -k2 foo.txt`
 
 [2]: With really big outputs, `sort` may not have enough space inside it's tmp directory to actually do sorting. Do `-T .` to specify the current directory to be used as temp space.  
 
+## stty
+Funny terminal settings commands
+
+For example do `stty -icrnl` to disable the ENTER button to translate to a newline in terminal. `stty icrnl` to reenable. Read the man pages.
+
 ## swapon  
 Adds a swap partitions to `/etc/fstab` to mount it.
 
@@ -335,7 +359,7 @@ Cmdline wireshark, wireshark filters are processed as cmdline arguments.
 Advanced help:  
 `-G` Prints every wireshark filter. Use injunction with `egrep "\sPATTERN\." | less -Sx40`.  
 `-G help` more info.  
-`-G protocols`Find abbreviations of protocols.  
+`-G protocols` Find abbreviations of protocols.  
   
 Statistics:  
 `-z` Protocol Hierarchy  
@@ -399,3 +423,6 @@ Get hex of output
 
 Get hex of "hello world" `echo -n "hello world" | xxd`
 Without format, get hex of "hello world" `echo -n "hello world" | xxd -p`
+
+## zeek
+

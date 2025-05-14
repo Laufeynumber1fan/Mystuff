@@ -1,3 +1,6 @@
+```
+## Unsorted snippets for general tips. Most of these have been linked from other files.
+```
 ## About [drive partitioning](https://en.wikipedia.org/wiki/Disk_partitioning#Unix-like_systems) in Linux.  
 > A common minimal configuration for Linux systems is to use three partitions: one holding the system files mounted on "/" (the root directory), one holding user configuration files and data mounted on /home (home directory), and a swap partition.
   
@@ -57,7 +60,7 @@ BAD | GOOD
 --- | ---
 [dontclickthiswebsite.com](https://www.youtube.com/watch?v=c8tGgVX9__Q) | dontclickthiswebsite[.]com  
 
-This is to prevent browsers and text editors from automatically making links to URLs or to stop people from acidentally clicking the link
+Official term is defanging. This is to prevent browsers and text editors from automatically making links to URLs or to stop people from acidentally clicking the link
 
 ## Give tshark a GUI by putting pcaps into a web browser  
 
@@ -76,3 +79,29 @@ Step 3: open the html into firefox
 `firefox test.html`  
 Now your shit has a drop down menu for packets, kinda like wireshark
 
+## Trace PS command history
+`Get-Content (Get-PSReadlineOption).HistorySavePath`
+Useful for seeing if bad scripts had been running
+
+## Installing zeek
+Run these commands:
+```
+echo 'deb http://download.opensuse.org/repositories/security:/zeek/xUbuntu_24.10/ /' | sudo tee /etc/apt/sources.list.d/security:zeek.list
+curl -fsSL https://download.opensuse.org/repositories/security:zeek/xUbuntu_24.10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/security_zeek.gpg > /dev/null
+sudo apt update
+sudo apt install zeek
+```
+Then set the path variable:  
+`export PATH=/usr/local/zeek/bin:$PATH`
+
+If zeek is not working or the terminal is frozen, you may need to do `apt upgrade` to update zeek or zeek dependencies to the most recent distro version.
+
+## Signing new gpg keys.
+So all kali VMs needed a new gpg key because of this kali [blog](https://www.kali.org/blog/new-kali-archive-signing-key/) and this led me to this rabbit hole about how gpg is used to verify the safe installation of apt packages and preventing malicious URLs from providing the downloads.
+
+Here's some of the stuff I read.
+[You need to know why apt-key add is deprecated](https://askubuntu.com/questions/1286545/what-commands-exactly-should-replace-the-deprecated-apt-key/1307181#1307181)  
+[Official doc](https://gnupg.org)  
+[Arch wiki tutorial](https://wiki.archlinux.org/title/GnuPG)  
+
+It's very easy to assume thatgpg is like adding TLS to file transfers, they achieve the same thing but achieve it differently. The difference is that TLS encrypts the connection but gpg encrypts the file itself and verifies that it is the correct package from the source repository.
