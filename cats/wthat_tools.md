@@ -34,11 +34,12 @@
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sfdisk>sfdisk</a></td>
         </tr>
         <tr>
-            <th>15</th>
+            <th>16</th>
             <th colspan=26>Linux Literacy</th>
         </tr>
         <tr>
             <td></td>
+            <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#curl>curl</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#date>date</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#grep>grep</a></td>
             <td><a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#gunzip>gunzip</a></td>
@@ -132,6 +133,9 @@ Get checksums of file. You can choose a hashing algorithm to apply. For MD5 chec
 With no options, it does 32 bit CRC by default `cksum foo.exe`  
 Do SHA256 hash (you can also do this with <a href=https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#sha256sum>sha256sum</a>)`cksum -a sha256 foo.exe`  
 
+## curl TODO
+Get file from url. Similar to wget
+
 ## date
 Print system date and time.
   
@@ -145,12 +149,27 @@ Print file system usage.
 Interactive drive partitioning.
 
 ## gpg  
-Keyring manager, prominently used in apt for signing packages and preventing malicious repos from installing packages. Kinda like TLS in a way.
+The successor to apt-key, gpg is a keyring manager, prominently used in apt for signing packages and preventing malicious repos from installing packages. Kinda like TLS in a way.
 
-https://askubuntu.com/questions/1286545/what-commands-exactly-should-replace-the-deprecated-apt-key/1307181#1307181
+`--no-default-keyring` Very necessary command that prevents a new keyring into becoming a default keyring. Linux distros already have a configured default keyring so adding one is gonna add a vulnerability.
+`--keyring file` Add the file to the list of keyrings<sup>[1]</sup>
 
+
+Note: Move/store keyrings (.gpg) files in `/usr/share/keyrings/`
+
+Example:
+Initialise a new keyring from kali
+Get the keyring with [curl](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/wthat_tools.md#curl), save it to the correct dir  
+`sudo curl https://archive.kali.org/archive-keyring.gpg -o /usr/share/keyrings/kali-archive-keyring.gpg`  
+Intialise it with gpg  
+`gpg --no-default-keyring --keyring /usr/share/keyrings/kali-archive-keyring.gpg -k /usr/share/keyrings/kali-archive-keyring.gpg`
+
+Stackoverflow help: [What commands exactly should replace the deprecated apt-key?](https://askubuntu.com/questions/1286545/what-commands-exactly-should-replace-the-deprecated-apt-key/1307181#1307181)  
 
 ## grep TODO
+
+YT: [Where GREP came from](https://www.youtube.com/watch?v=NTfOnGZUZDk)
+
 
 ## gunzip
 Unzip `.gz` files, but if you want to unzip `.tar.gz`, use `tar`.
@@ -163,6 +182,7 @@ Show and change ip configuration.
 `-a` Display all ip configuration  
 
 ## jq TODO
+Used for parsing json files. Good synergy with zeek json logs.
 
 ## less
 Used for displaying long cmdline outputs  
@@ -325,6 +345,7 @@ Cmdline pcap analyser, similar to tshark but lightweight. Has simpler filters.
 `-n` Don't convert IPs to hostnames.  
 `-X` Print ASCII and hex of payloads. 
 `-e` Print link level/ethernet packet header.
+`-w` Make pcap from packets captured by filter.  
 
 Only DNS packets `tcpdump -r foo.pcap port 53`  
 Exclude outgoing (dst) DNS connections `tcpdump -r foo.pcap not dst port 53`  
@@ -425,4 +446,4 @@ Get hex of "hello world" `echo -n "hello world" | xxd`
 Without format, get hex of "hello world" `echo -n "hello world" | xxd -p`
 
 ## zeek
-
+[How to install](https://github.com/Laufeynumber1fan/Mystuff/blob/main/cats/addendums.md#installing-zeek)  

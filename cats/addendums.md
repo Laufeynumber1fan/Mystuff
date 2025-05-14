@@ -93,15 +93,26 @@ sudo apt install zeek
 ```
 Then set the path variable:  
 `export PATH=/usr/local/zeek/bin:$PATH`
+or zeek might have been installed in /opt
+`export PATH=/opt/zeek/bin:$PATH`
 
 If zeek is not working or the terminal is frozen, you may need to do `apt upgrade` to update zeek or zeek dependencies to the most recent distro version.
 
 ## Signing new gpg keys.
 So all kali VMs needed a new gpg key because of this kali [blog](https://www.kali.org/blog/new-kali-archive-signing-key/) and this led me to this rabbit hole about how gpg is used to verify the safe installation of apt packages and preventing malicious URLs from providing the downloads.
-
+  
 Here's some of the stuff I read.
 [You need to know why apt-key add is deprecated](https://askubuntu.com/questions/1286545/what-commands-exactly-should-replace-the-deprecated-apt-key/1307181#1307181)  
 [Official doc](https://gnupg.org)  
 [Arch wiki tutorial](https://wiki.archlinux.org/title/GnuPG)  
-
+  
 It's very easy to assume thatgpg is like adding TLS to file transfers, they achieve the same thing but achieve it differently. The difference is that TLS encrypts the connection but gpg encrypts the file itself and verifies that it is the correct package from the source repository.
+
+## How to make aliases permanent in bash or zsh
+Edit the file ~/.bash_aliases 
+
+Add a new `alias` command, for example `alias ll='ls -l`
+Save the txt file and run `source ~/.bash_aliases`. 
+Verify by running the command `alias` without args.
+
+For zsh, just do `echo "alias ll='ls -l'">>~/.zshrc` then `source ~/.zshrc`
